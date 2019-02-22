@@ -193,7 +193,7 @@
           <version>${checkstyle.plugin.version}</version>
           <configuration>
             <configLocation>configuration/checkstyle/checkstyle.xml</configLocation>
-            <suppressionsLocation>configuration/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+            <suppressionsLocation>configuration/checkstyle/suppression.xml</suppressionsLocation>
             <excludes>target/**/*,**/dto/**/*, **/ExceptionController.java</excludes>
             <encoding>${project.build.sourceEncoding}</encoding>
             <consoleOutput>true</consoleOutput>
@@ -232,6 +232,7 @@
             <threshold>Low</threshold>
             <xmlOutput>true</xmlOutput>
             <outputDirectory>${project.build.directory}/findbugs</outputDirectory>
+            <excludeFilterFile>configuration/findbugs/exclude.xml</excludeFilterFile>
           </configuration>
           <executions>
             <execution>
