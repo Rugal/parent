@@ -32,6 +32,11 @@
     <overall.report.path>${project.build.directory}/overall-reports</overall.report.path>
     <overall.agent.path>${overall.report.path}/jacoco.exec</overall.agent.path>
     <jacoco.overall.report.path>${project.reporting.outputDirectory}/jacoco/overall</jacoco.overall.report.path>
+    <!-- swagger codegen -->
+    <swagger.codegen.package.root>${project.groupId}.${project.artifactId}.swagger</swagger.codegen.package.root>
+    <swagger.codegen.model.package>${swagger.codegen.package.root}.model</swagger.codegen.model.package>
+    <swagger.codegen.api.package>${swagger.codegen.package.root}.api</swagger.codegen.api.package>
+    <swagger.codegen.invoker.package>${swagger.codegen.package.root}.invoker</swagger.codegen.invoker.package>
     <!--
         dependency version
     -->
@@ -426,6 +431,36 @@
               <configuration>
                 <dataFile>${overall.agent.path}</dataFile>
                 <outputDirectory>${jacoco.overall.report.path}</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- swagger codegen -->
+        <plugin>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-codegen-maven-plugin</artifactId>
+          <version>${swagger.codegen.version}</version>
+          <executions>
+            <execution>
+              <id>swagger-codegen-workflow</id>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <configuration>
+                <inputSpec>configuration/swagger/openapi.yml</inputSpec>
+                <skipOverwrite>true</skipOverwrite>
+                <language>spring</language>
+                <modelPackage>${swagger.codegen.model.package}</modelPackage>
+                <apiPackage>${swagger.codegen.api.package}</apiPackage>
+                <invokerPackage>${swagger.codegen.invoker.package}</invokerPackage>
+                <generateSupportingFiles>false</generateSupportingFiles>
+                <generateApis>true</generateApis>
+                <modelNameSuffix>Dto</modelNameSuffix>
+                <configOptions>
+                  <dateLibrary>java8</dateLibrary>
+                  <java8>true</java8>
+                  <interfaceOnly>true</interfaceOnly>
+                </configOptions>
               </configuration>
             </execution>
           </executions>
