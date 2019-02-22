@@ -14,6 +14,9 @@
     -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <!-- repository -->
+    <sonatype.snapshot>https://oss.sonatype.org/content/repositories/snapshots</sonatype.snapshot>
+    <sonatype.release>https://oss.sonatype.org/content/repositories/releases/</sonatype.release>
     <!-- test toggle -->
     <skip.surefire.tests>true</skip.surefire.tests>
     <skip.failsafe.tests>true</skip.failsafe.tests>
@@ -415,4 +418,14 @@
     </pluginManagement>
   </build>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sonatype-snapshot</id>
+      <url>${sonatype.snapshot}</url>
+    </snapshotRepository>
+    <repository>
+      <id>sonatype-release</id>
+      <url>${sonatype.release}</url>
+    </repository>
+  </distributionManagement>
 </project>
