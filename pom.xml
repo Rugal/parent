@@ -66,7 +66,7 @@
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
     <pmd.plugin.version>3.11.0</pmd.plugin.version>
-    <flyway.plugin.version>5.2.4</flyway.plugin.version>
+    <flyway.version>5.2.4</flyway.version>
   </properties>
 
   <dependencyManagement>
@@ -560,13 +560,13 @@
         <plugin>
           <groupId>org.flywaydb</groupId>
           <artifactId>flyway-maven-plugin</artifactId>
-          <version>${flyway.plugin.version}</version>
+          <version>${flyway.version}</version>
           <configuration>
             <schemas>
               <schema>test</schema>
             </schemas>
             <installedBy>Rugal Bernstein</installedBy>
-            <configFile>src/main/resources/db/local.properties</configFile>
+            <configFile>configuration/db/local.properties</configFile>
           </configuration>
         </plugin>
       </plugins>
