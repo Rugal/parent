@@ -9,14 +9,29 @@
   <packaging>pom</packaging>
 
   <properties>
-    <!-- configuration -->
+    <!--
+        configuration
+    -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
+    <!-- test toggle -->
     <skip.surefire.tests>true</skip.surefire.tests>
     <skip.failsafe.tests>true</skip.failsafe.tests>
+    <!-- surefire -->
     <surefire.report.path>${project.build.directory}/surefire-reports</surefire.report.path>
+    <surefire.agent.path>${surefire.report.path}/jacoco.exec</surefire.agent.path>
+    <jacoco.surefire.report.path>${project.reporting.outputDirectory}/jacoco/surefire</jacoco.surefire.report.path>
+    <!-- failsafe -->
     <failsafe.report.path>${project.build.directory}/failsafe-reports</failsafe.report.path>
-    <!-- dependency version -->
+    <failsafe.agent.path>${failsafe.report.path}/jacoco.exec</failsafe.agent.path>
+    <jacoco.failsafe.report.path>${project.reporting.outputDirectory}/jacoco/failsafe</jacoco.failsafe.report.path>
+    <!-- overall -->
+    <overall.report.path>${project.build.directory}/overall-reports</overall.report.path>
+    <overall.agent.path>${overall.report.path}/jacoco.exec</overall.agent.path>
+    <jacoco.overall.report.path>${project.reporting.outputDirectory}/jacoco/overall</jacoco.overall.report.path>
+    <!--
+        dependency version
+    -->
     <lombok.version>1.18.6</lombok.version>
     <spring.cloud.dependency.version>Finchley.RELEASE</spring.cloud.dependency.version>
     <spring.boot.dependency.version>2.1.3.RELEASE</spring.boot.dependency.version>
@@ -28,11 +43,14 @@
     <faker.version>0.17.2</faker.version>
     <mockito.version>2.24.5</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-    <!-- plugin version -->
+    <!--
+        plugin version
+    -->
     <compiler.plugin.version>3.8.0</compiler.plugin.version>
     <git.commit.id.plugin.version>2.2.6</git.commit.id.plugin.version>
     <test.plugin.version>2.22.1</test.plugin.version>
     <source.plugin.version>3.0.1</source.plugin.version>
+    <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -272,6 +290,124 @@
                 <goal>integration-test</goal>
                 <goal>verify</goal>
               </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- test coverage -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.plugin.version}</version>
+          <!-- exclude from jacoco coverage -->
+          <configuration>
+            <excludes>
+              <exclude>**/exception/*</exclude>
+              <exclude>**/swagger/**</exclude>
+              <exclude>**/mapper/**</exclude>
+              <exclude>**/config/**</exclude>
+            </excludes>
+            <rules>
+              <rule>
+                <element>CLASS</element>
+                <limits>
+                  <limit>
+                    <counter>LINE</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.90</minimum>
+                  </limit>
+                  <limit>
+                    <counter>BRANCH</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0.90</minimum>
+                  </limit>
+                </limits>
+              </rule>
+            </rules>
+          </configuration>
+          <executions>
+            <!-- surefire report -->
+            <execution>
+              <id>prepare-surefire-agent</id>
+              <phase>process-test-classes</phase>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <configuration>
+                <propertyName>jacoco.surefire.arg</propertyName>
+                <destFile>${surefire.agent.path}</destFile>
+                <append>true</append>
+              </configuration>
+            </execution>
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <dataFile>${surefire.agent.path}</dataFile>
+                <outputDirectory>${jacoco.surefire.report.path}</outputDirectory>
+              </configuration>
+            </execution>
+            <!-- failsafe report -->
+            <execution>
+              <id>prepare-it-agent</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <configuration>
+                <destFile>${failsafe.agent.path}</destFile>
+                <propertyName>jacoco.failsafe.arg</propertyName>
+                <append>true</append>
+              </configuration>
+            </execution>
+            <execution>
+              <id>post-integration-test</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <dataFile>${failsafe.agent.path}</dataFile>
+                <outputDirectory>${jacoco.failsafe.report.path}</outputDirectory>
+              </configuration>
+            </execution>
+            <!-- overall report -->
+            <execution>
+              <id>merge-results</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>merge</goal>
+              </goals>
+              <configuration>
+                <fileSets>
+                  <fileSet>
+                    <directory>${surefire.report.path}</directory>
+                    <includes>
+                      <include>*.exec</include>
+                    </includes>
+                  </fileSet>
+                  <fileSet>
+                    <directory>${failsafe.report.path}</directory>
+                    <includes>
+                      <include>*.exec</include>
+                    </includes>
+                  </fileSet>
+                </fileSets>
+                <destFile>${overall.agent.path}</destFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>post-merge-report</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <configuration>
+                <dataFile>${overall.agent.path}</dataFile>
+                <outputDirectory>${jacoco.overall.report.path}</outputDirectory>
+              </configuration>
             </execution>
           </executions>
         </plugin>
