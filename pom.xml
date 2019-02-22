@@ -192,6 +192,9 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${checkstyle.plugin.version}</version>
           <configuration>
+            <configLocation>configuration/checkstyle/checkstyle.xml</configLocation>
+            <suppressionsLocation>configuration/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+            <excludes>target/**/*,**/dto/**/*, **/ExceptionController.java</excludes>
             <encoding>${project.build.sourceEncoding}</encoding>
             <consoleOutput>true</consoleOutput>
             <failsOnError>true</failsOnError>
