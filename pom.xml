@@ -65,6 +65,7 @@
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+    <spotbugs.plugin.version>3.1.11</spotbugs.plugin.version>
     <pmd.plugin.version>3.11.0</pmd.plugin.version>
     <flyway.version>5.2.4</flyway.version>
   </properties>
@@ -105,7 +106,6 @@
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
-        <scope>provided</scope>
       </dependency>
       <!-- mapstruct -->
       <dependency>
@@ -225,6 +225,29 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>${findbugs.plugin.version}</version>
+          <configuration>
+            <skip>false</skip>
+            <failOnError>true</failOnError>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+            <outputDirectory>${project.build.directory}/findbugs</outputDirectory>
+            <excludeFilterFile>configuration/findbugs/exclude.xml</excludeFilterFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>compile</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- spotbugs -->
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs.plugin.version}</version>
           <configuration>
             <skip>false</skip>
             <failOnError>true</failOnError>
