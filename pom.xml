@@ -101,21 +101,10 @@
       <!--
           codegen
       -->
-      <!-- lombok -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
       <!-- mapstruct -->
       <dependency>
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct</artifactId>
-        <version>${mapstruct.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mapstruct</groupId>
-        <artifactId>mapstruct-jdk8</artifactId>
         <version>${mapstruct.version}</version>
       </dependency>
       <!-- swagger annotation -->
@@ -212,7 +201,6 @@
           </dependencies>
           <executions>
             <execution>
-              <id>validate</id>
               <phase>validate</phase>
               <goals>
                 <goal>check</goal>
@@ -236,7 +224,7 @@
           </configuration>
           <executions>
             <execution>
-              <phase>compile</phase>
+              <phase>validate</phase>
               <goals>
                 <goal>check</goal>
               </goals>
@@ -259,7 +247,7 @@
           </configuration>
           <executions>
             <execution>
-              <phase>compile</phase>
+              <phase>validate</phase>
               <goals>
                 <goal>check</goal>
               </goals>
@@ -287,7 +275,7 @@
           </configuration>
           <executions>
             <execution>
-              <phase>compile</phase>
+              <phase>validate</phase>
               <goals>
                 <goal>check</goal>
               </goals>
@@ -604,6 +592,23 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <compilerArg>
+              -Amapstruct.defaultComponentModel=spring
+            </compilerArg>
+          </compilerArgs>
         </configuration>
       </plugin>
     </plugins>
