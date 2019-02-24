@@ -167,7 +167,6 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
-        <version>${hibernate.validator.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -428,9 +427,11 @@
           <configuration>
             <excludes>
               <exclude>**/exception/*</exclude>
+              <exclude>**/entity/*</exclude>
               <exclude>**/swagger/**</exclude>
               <exclude>**/mapper/**</exclude>
               <exclude>**/config/**</exclude>
+              <exclude>**/generated-sources/**</exclude>
             </excludes>
             <rules>
               <rule>
