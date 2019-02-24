@@ -172,6 +172,9 @@
   </dependencyManagement>
 
   <build>
+    <!-- Unify the name so CI can pick it up easily -->
+    <finalName>deliverable</finalName>
+
     <pluginManagement>
       <plugins>
         <!-- checkstyle -->
