@@ -582,6 +582,7 @@
             </schemas>
             <installedBy>Rugal Bernstein</installedBy>
             <configFile>configuration/db/local.properties</configFile>
+            <locations>filesystem:configuration/db/migration</locations>
           </configuration>
         </plugin>
       </plugins>
