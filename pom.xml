@@ -84,6 +84,7 @@
     <source.plugin.version>3.0.1</source.plugin.version>
     <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
     <deploy.plugin.version>2.8.2</deploy.plugin.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
@@ -193,9 +194,6 @@
   </dependencyManagement>
 
   <build>
-    <!-- Unify the name so CI can pick it up easily -->
-    <finalName>deliverable</finalName>
-
     <pluginManagement>
       <plugins>
         <!-- checkstyle -->
@@ -352,7 +350,10 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.5</version>
+          <version>${gpg.plugin.version}</version>
+          <configuration>
+            <keyname>Rugal</keyname>
+          </configuration>
           <executions>
             <execution>
               <id>sign-artifacts</id>
@@ -381,7 +382,7 @@
           <configuration>
             <serverId>ossrh</serverId>
             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
           </configuration>
         </plugin>
         <!-- git commit id -->
