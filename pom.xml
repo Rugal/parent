@@ -36,6 +36,7 @@
     <java.version>1.8</java.version>
     <!-- repository -->
     <sonatype.snapshot>https://oss.sonatype.org/content/repositories/snapshots</sonatype.snapshot>
+    <sonatype.staging>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatype.staging>
     <sonatype.release>https://oss.sonatype.org/content/repositories/releases/</sonatype.release>
     <!-- test toggle -->
     <skip.surefire.tests>true</skip.surefire.tests>
@@ -80,7 +81,7 @@
     <test.plugin.version>2.22.1</test.plugin.version>
     <source.plugin.version>3.0.1</source.plugin.version>
     <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
-    <deploy.plugin.version>2.8.2</deploy.plugin.version>	
+    <deploy.plugin.version>2.8.2</deploy.plugin.version>
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
@@ -643,8 +644,8 @@
       <url>${sonatype.snapshot}</url>
     </snapshotRepository>
     <repository>
-      <id>sonatype-release</id>
-      <url>${sonatype.release}</url>
+      <id>sonatype-staging</id>
+      <url>${sonatype.staging}</url>
     </repository>
   </distributionManagement>
 </project>
