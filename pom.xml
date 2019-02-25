@@ -91,6 +91,7 @@
     <spotbugs.plugin.version>3.1.11</spotbugs.plugin.version>
     <pmd.plugin.version>3.11.0</pmd.plugin.version>
     <flyway.version>5.2.4</flyway.version>
+    <buildplan.plugin.version>1.3</buildplan.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -336,24 +337,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>${deploy.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>deploy</id>
-              <phase>deploy</phase>
-              <goals>
-                <goal>deploy</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
         <!-- gpg -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${gpg.plugin.version}</version>
-          <configuration>
-            <keyname>Rugal</keyname>
-          </configuration>
           <executions>
             <execution>
               <id>sign-artifacts</id>
@@ -664,6 +653,17 @@
             </compilerArg>
           </compilerArgs>
         </configuration>
+      </plugin>
+      <!-- build plan -->
+      <plugin>
+        <groupId>fr.jcgay.maven.plugins</groupId>
+        <artifactId>buildplan-maven-plugin</artifactId>
+        <version>${buildplan.plugin.version}</version>
+      </plugin>
+      <!-- gpg -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
