@@ -80,6 +80,7 @@
     <test.plugin.version>2.22.1</test.plugin.version>
     <source.plugin.version>3.0.1</source.plugin.version>
     <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
+    <deploy.plugin.version>2.8.2</deploy.plugin.version>	
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
@@ -325,6 +326,21 @@
               <id>attach-javadocs</id>
               <goals>
                 <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- deploy -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${deploy.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>deploy</id>
+              <phase>deploy</phase>
+              <goals>
+                <goal>deploy</goal>
               </goals>
             </execution>
           </executions>
