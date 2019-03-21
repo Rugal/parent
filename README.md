@@ -2,6 +2,13 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent)
 
+
+## release instruction
+
+```bash
+mvn -P sonatype release:prepare release:perform
+```
+
 ## release version
 
 To include in your `pom.xml`

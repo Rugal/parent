@@ -74,7 +74,7 @@
     <faker.version>0.17.2</faker.version>
     <mockito.version>2.24.5</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-    <puppycrawl.version>8.17</puppycrawl.version>
+    <puppycrawl.version>8.18</puppycrawl.version>
     <!--
         plugin version
     -->
@@ -582,36 +582,6 @@
             </execution>
           </executions>
         </plugin>
-        <!-- swagger codegen -->
-        <plugin>
-          <groupId>io.swagger</groupId>
-          <artifactId>swagger-codegen-maven-plugin</artifactId>
-          <version>${swagger.codegen.version}</version>
-          <configuration>
-            <inputSpec>configuration/swagger/openapi.yml</inputSpec>
-            <skipOverwrite>true</skipOverwrite>
-            <language>spring</language>
-            <modelPackage>${swagger.codegen.model.package}</modelPackage>
-            <apiPackage>${swagger.codegen.api.package}</apiPackage>
-            <invokerPackage>${swagger.codegen.invoker.package}</invokerPackage>
-            <generateSupportingFiles>false</generateSupportingFiles>
-            <generateApis>true</generateApis>
-            <modelNameSuffix>Dto</modelNameSuffix>
-            <configOptions>
-              <dateLibrary>java8</dateLibrary>
-              <java8>false</java8>
-              <interfaceOnly>true</interfaceOnly>
-            </configOptions>
-          </configuration>
-          <executions>
-            <execution>
-              <id>swagger-codegen-workflow</id>
-              <goals>
-                <goal>generate</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
         <!-- Swagger codegen -->
         <plugin>
           <groupId>org.openapitools</groupId>
@@ -693,13 +663,24 @@
         <artifactId>buildplan-maven-plugin</artifactId>
         <version>${buildplan.plugin.version}</version>
       </plugin>
-      <!-- gpg -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <!--only activate for releasing to sonatype-->
+    <profile>
+      <id>sonatype</id>
+      <build>
+        <plugins>
+          <!-- gpg -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <distributionManagement>
     <snapshotRepository>
