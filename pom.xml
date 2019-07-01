@@ -85,7 +85,7 @@
     <compiler.plugin.version>3.8.0</compiler.plugin.version>
     <git.commit.id.plugin.version>2.2.6</git.commit.id.plugin.version>
     <test.plugin.version>2.22.1</test.plugin.version>
-    <source.plugin.version>3.0.1</source.plugin.version>
+    <source.plugin.version>3.1.0</source.plugin.version>
     <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
     <deploy.plugin.version>2.8.2</deploy.plugin.version>
     <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
@@ -360,6 +360,22 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <!-- jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>jar</goal>
+                <goal>test-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+          </configuration>
         </plugin>
         <!-- javadoc -->
         <plugin>
