@@ -98,6 +98,7 @@
     <flyway.version>5.2.4</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
     <openapi.plugin.version>4.0.2</openapi.plugin.version>
+    <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -368,6 +369,7 @@
           <version>${source.plugin.version}</version>
           <executions>
             <execution>
+              <id>default-jar</id>
               <goals>
                 <goal>jar</goal>
                 <goal>test-jar</goal>
@@ -495,8 +497,10 @@
             <excludes>
               <exclude>**/*IntegrationTest.java</exclude>
             </excludes>
+            <parallel>methods</parallel>
+            <useUnlimitedThreads>true</useUnlimitedThreads>
             <trimStackTrace>false</trimStackTrace>
-            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.surefire.arg}</argLine>
+            <argLine>-Xms512m -Xmx1500m -Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.surefire.arg}</argLine>
             <reportsDirectory>${surefire.report.path}</reportsDirectory>
           </configuration>
         </plugin>
@@ -760,6 +764,38 @@
               <goals>
                 <goal>descriptor</goal>
               </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- build helper maven -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build.helper.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>add_sources</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/main/java</source>
+                </sources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>add_test_sources</id>
+              <phase>generate-test-sources</phase>
+              <goals>
+                <goal>add-test-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/test/java</source>
+                </sources>
+              </configuration>
             </execution>
           </executions>
         </plugin>
