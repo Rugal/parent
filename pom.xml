@@ -55,6 +55,7 @@
     <overall.report.path>${project.build.directory}/overall-reports</overall.report.path>
     <overall.agent.path>${overall.report.path}/jacoco.exec</overall.agent.path>
     <jacoco.overall.report.path>${project.reporting.outputDirectory}/jacoco/overall</jacoco.overall.report.path>
+    <jacoco.skip.coverage.check>true</jacoco.skip.coverage.check>
     <!-- openapi codegen server -->
     <openapi.codegen.package.root>${project.groupId}.${project.artifactId}.openapi</openapi.codegen.package.root>
     <openapi.codegen.model.package>${openapi.codegen.package.root}.model</openapi.codegen.model.package>
@@ -65,17 +66,17 @@
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.6</lombok.version>
-    <spring.cloud.dependency.version>Finchley.RELEASE</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.1.3.RELEASE</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>Greenwich.SR2</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.1.6.RELEASE</spring.boot.dependency.version>
     <mapstruct.version>1.3.0.Final</mapstruct.version>
     <swagger.version>1.5.21</swagger.version>
     <openapi.jackson.version>0.1.0</openapi.jackson.version>
     <springfox.version>2.9.2</springfox.version>
     <swagger.codegen.version>2.4.1</swagger.codegen.version>
     <faker.version>0.18</faker.version>
-    <mockito.version>2.24.5</mockito.version>
+    <mockito.version>2.28.2</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-    <puppycrawl.version>8.18</puppycrawl.version>
+    <puppycrawl.version>8.22</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
     <testing-harness.version>3.3.0</testing-harness.version>
@@ -646,6 +647,18 @@
                 <dataFile>${overall.agent.path}</dataFile>
                 <outputDirectory>${jacoco.overall.report.path}</outputDirectory>
               </configuration>
+            </execution>
+            <!-- fail build if rule not reach -->
+            <execution>
+              <id>jacoco-check</id>
+              <configuration>
+                <dataFile>${overall.agent.path}</dataFile>
+                <skip>${jacoco.skip.coverage.check}</skip>
+              </configuration>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
