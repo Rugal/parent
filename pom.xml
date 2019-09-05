@@ -173,6 +173,12 @@
         <artifactId>jackson-databind-nullable</artifactId>
         <version>${openapi.jackson.version}</version>
       </dependency>
+      <!-- spotbugs annotation -->
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.plugin.version}</version>
+      </dependency>
       <!--
           test
       -->
