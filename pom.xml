@@ -61,6 +61,7 @@
     <openapi.codegen.model.package>${openapi.codegen.package.root}.model</openapi.codegen.model.package>
     <openapi.codegen.api.package>${openapi.codegen.package.root}.api</openapi.codegen.api.package>
     <openapi.codegen.invoker.package>${openapi.codegen.package.root}.invoker</openapi.codegen.invoker.package>
+    <openapi.codegen.skipIfSpecIsUnchanged>true</openapi.codegen.skipIfSpecIsUnchanged>
     <!--
         dependency version
     -->
@@ -689,7 +690,7 @@
             <generateModelTests>false</generateModelTests>
             <generateSupportingFiles>false</generateSupportingFiles>
             <modelNameSuffix>Dto</modelNameSuffix>
-            <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+            <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
           </configuration>
           <executions>
             <execution>
