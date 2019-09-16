@@ -584,6 +584,7 @@
                 <propertyName>jacoco.surefire.arg</propertyName>
                 <destFile>${surefire.agent.path}</destFile>
                 <append>true</append>
+                <skip>${skip.surefire.tests}</skip>
               </configuration>
             </execution>
             <execution>
@@ -595,6 +596,7 @@
               <configuration>
                 <dataFile>${surefire.agent.path}</dataFile>
                 <outputDirectory>${jacoco.surefire.report.path}</outputDirectory>
+                <skip>${skip.surefire.tests}</skip>
               </configuration>
             </execution>
             <!-- failsafe report -->
@@ -608,6 +610,7 @@
                 <destFile>${failsafe.agent.path}</destFile>
                 <propertyName>jacoco.failsafe.arg</propertyName>
                 <append>true</append>
+                <skip>${skip.failsafe.tests}</skip>
               </configuration>
             </execution>
             <execution>
@@ -619,6 +622,7 @@
               <configuration>
                 <dataFile>${failsafe.agent.path}</dataFile>
                 <outputDirectory>${jacoco.failsafe.report.path}</outputDirectory>
+                <skip>${skip.failsafe.tests}</skip>
               </configuration>
             </execution>
             <!-- overall report -->
