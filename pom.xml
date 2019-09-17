@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.4.1-SNAPSHOT</version>
+  <version>1.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://rug.al</url>
   <name>Parent POM object for Rugal</name>
@@ -56,6 +56,9 @@
     <overall.agent.path>${overall.report.path}/jacoco.exec</overall.agent.path>
     <jacoco.overall.report.path>${project.reporting.outputDirectory}/jacoco/overall</jacoco.overall.report.path>
     <jacoco.skip.coverage.check>true</jacoco.skip.coverage.check>
+    <!-- test coverage -->
+    <branch.threshold>0.9</branch.threshold>
+    <line.threshold>0.9</line.threshold>
     <!-- openapi codegen server -->
     <openapi.codegen.package.root>${project.groupId}.${project.artifactId}.openapi</openapi.codegen.package.root>
     <openapi.codegen.model.package>${openapi.codegen.package.root}.model</openapi.codegen.model.package>
@@ -67,17 +70,17 @@
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.6</lombok.version>
-    <spring.cloud.dependency.version>Greenwich.SR2</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.1.6.RELEASE</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>Greenwich.SR3</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.1.8.RELEASE</spring.boot.dependency.version>
     <mapstruct.version>1.3.0.Final</mapstruct.version>
     <swagger.version>1.5.21</swagger.version>
-    <openapi.jackson.version>0.1.0</openapi.jackson.version>
+    <openapi.jackson.version>0.2.0</openapi.jackson.version>
     <springfox.version>2.9.2</springfox.version>
-    <swagger.codegen.version>2.4.1</swagger.codegen.version>
-    <faker.version>0.18</faker.version>
+    <swagger.codegen.version>2.4.8</swagger.codegen.version>
+    <faker.version>1.0.1</faker.version>
     <mockito.version>2.28.2</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-    <puppycrawl.version>8.22</puppycrawl.version>
+    <puppycrawl.version>8.24</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
     <testing-harness.version>3.3.0</testing-harness.version>
@@ -95,7 +98,7 @@
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-    <spotbugs.plugin.version>3.1.11</spotbugs.plugin.version>
+    <spotbugs.plugin.version>3.1.12</spotbugs.plugin.version>
     <pmd.plugin.version>3.12.0</pmd.plugin.version>
     <flyway.version>5.2.4</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
@@ -561,12 +564,12 @@
                   <limit>
                     <counter>LINE</counter>
                     <value>COVEREDRATIO</value>
-                    <minimum>0.90</minimum>
+                    <minimum>${branch.threshold}</minimum>
                   </limit>
                   <limit>
                     <counter>BRANCH</counter>
                     <value>COVEREDRATIO</value>
-                    <minimum>0.90</minimum>
+                    <minimum>${line.threshold}</minimum>
                   </limit>
                 </limits>
               </rule>
