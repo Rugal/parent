@@ -20,7 +20,6 @@ To include in your `pom.xml`
 </parent>
 ```
 
-
 ## snapshot version
 for snapshot version, please add sonatype:
 
@@ -44,3 +43,15 @@ for snapshot version, please add sonatype:
   </repository>
 </repositories>
 ```
+
+## Configurable Property
+
+name | default | note
+---|---|---
+skip.surefire.tests | true | Skip unit test & coverage report
+skip.failsafe.tests | true | Skip integration test & coverage report
+branch.threshold | 0.9 | Minimum branch coverage threshold
+line.threshold | 0.9 Minimum line coverage threshold
+jacoco.skip.coverage.check | true | Skip test coverage check, this will fail build if threshold not reached
+openapi.codegen.package.root | ${project.groupId}.${project.artifactId}.openapi |
+openapi.codegen.skipIfSpecIsUnchanged | true | Skip codegen if no change in `contract.yml`
