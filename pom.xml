@@ -70,8 +70,8 @@
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.6</lombok.version>
-    <spring.cloud.dependency.version>Greenwich.SR3</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.1.8.RELEASE</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>Hoxton.SR1</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.2.4.RELEASE</spring.boot.dependency.version>
     <mapstruct.version>1.3.0.Final</mapstruct.version>
     <swagger.version>1.5.21</swagger.version>
     <openapi.jackson.version>0.2.0</openapi.jackson.version>
@@ -186,6 +186,18 @@
       <!--
           test
       -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+        <!-- exclude junit 4 -->
+        <exclusions>
+          <exclusion>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
       <!-- faker -->
       <dependency>
         <groupId>com.github.javafaker</groupId>
