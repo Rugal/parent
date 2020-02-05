@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.8.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://rug.al</url>
   <name>Parent POM object for Rugal</name>
@@ -55,49 +55,60 @@
     <overall.report.path>${project.build.directory}/overall-reports</overall.report.path>
     <overall.agent.path>${overall.report.path}/jacoco.exec</overall.agent.path>
     <jacoco.overall.report.path>${project.reporting.outputDirectory}/jacoco/overall</jacoco.overall.report.path>
+    <jacoco.skip.coverage.check>true</jacoco.skip.coverage.check>
+    <!-- test coverage -->
+    <branch.threshold>0.9</branch.threshold>
+    <line.threshold>0.9</line.threshold>
     <!-- openapi codegen server -->
     <openapi.codegen.package.root>${project.groupId}.${project.artifactId}.openapi</openapi.codegen.package.root>
     <openapi.codegen.model.package>${openapi.codegen.package.root}.model</openapi.codegen.model.package>
     <openapi.codegen.api.package>${openapi.codegen.package.root}.api</openapi.codegen.api.package>
     <openapi.codegen.invoker.package>${openapi.codegen.package.root}.invoker</openapi.codegen.invoker.package>
+    <openapi.codegen.skipIfSpecIsUnchanged>true</openapi.codegen.skipIfSpecIsUnchanged>
+    <!-- checkstyle -->
+    <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
     <!--
         dependency version
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.6</lombok.version>
-    <spring.cloud.dependency.version>Finchley.RELEASE</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.1.3.RELEASE</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>Hoxton.SR1</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.2.4.RELEASE</spring.boot.dependency.version>
     <mapstruct.version>1.3.0.Final</mapstruct.version>
     <swagger.version>1.5.21</swagger.version>
-    <openapi.jackson.version>0.1.0</openapi.jackson.version>
+    <openapi.jackson.version>0.2.0</openapi.jackson.version>
     <springfox.version>2.9.2</springfox.version>
-    <swagger.codegen.version>2.4.1</swagger.codegen.version>
-    <faker.version>0.18</faker.version>
-    <mockito.version>2.24.5</mockito.version>
+    <swagger.codegen.version>2.4.8</swagger.codegen.version>
+    <faker.version>1.0.1</faker.version>
+    <mockito.version>3.2.4</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
-    <puppycrawl.version>8.18</puppycrawl.version>
+    <puppycrawl.version>8.29</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
     <testing-harness.version>3.3.0</testing-harness.version>
+    <graphql-starter.version>5.0.2</graphql-starter.version>
+    <graphql-tool.version>5.2.4</graphql-tool.version>
+    <graphql-kickstart.version>6.0.1</graphql-kickstart.version>
     <!--
         plugin version
     -->
     <compiler.plugin.version>3.8.0</compiler.plugin.version>
     <git.commit.id.plugin.version>2.2.6</git.commit.id.plugin.version>
     <test.plugin.version>2.22.1</test.plugin.version>
-    <source.plugin.version>3.0.1</source.plugin.version>
-    <jacoco.plugin.version>0.8.3</jacoco.plugin.version>
+    <source.plugin.version>3.1.0</source.plugin.version>
+    <jacoco.plugin.version>0.8.4</jacoco.plugin.version>
     <deploy.plugin.version>2.8.2</deploy.plugin.version>
     <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <release.plugin.version>2.5.3</release.plugin.version>
-    <checkstyle.plugin.version>3.0.0</checkstyle.plugin.version>
+    <checkstyle.plugin.version>3.1.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-    <spotbugs.plugin.version>3.1.11</spotbugs.plugin.version>
-    <pmd.plugin.version>3.11.0</pmd.plugin.version>
+    <spotbugs.plugin.version>3.1.12</spotbugs.plugin.version>
+    <pmd.plugin.version>3.12.0</pmd.plugin.version>
     <flyway.version>5.2.4</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
     <openapi.plugin.version>4.0.2</openapi.plugin.version>
+    <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -171,9 +182,57 @@
         <artifactId>jackson-databind-nullable</artifactId>
         <version>${openapi.jackson.version}</version>
       </dependency>
+      <!-- spotbugs annotation -->
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.plugin.version}</version>
+      </dependency>
+      <!-- 
+        graphql 
+      -->
+      <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-java-tools</artifactId>
+        <version>${graphql-tool.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-spring-boot-starter</artifactId>
+        <version>${graphql-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>voyager-spring-boot-starter</artifactId>
+        <version>${graphql-kickstart.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>playground-spring-boot-starter</artifactId>
+        <version>${graphql-kickstart.version}</version>
+      </dependency>
+      <!-- test -->
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>graphql-spring-boot-starter-test</artifactId>
+        <version>${graphql-kickstart.version}</version>
+        <scope>test</scope>
+      </dependency>
       <!--
           test
       -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+        <!-- exclude junit 4 -->
+        <exclusions>
+          <exclusion>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
       <!-- faker -->
       <dependency>
         <groupId>com.github.javafaker</groupId>
@@ -248,7 +307,7 @@
           <configuration>
             <configLocation>configuration/checkstyle/checkstyle.xml</configLocation>
             <suppressionsLocation>configuration/checkstyle/suppression.xml</suppressionsLocation>
-            <excludes>target/**/*,**/dto/**/*, **/ExceptionController.java</excludes>
+            <excludes>${checkstyle.exclusion}</excludes>
             <encoding>${project.build.sourceEncoding}</encoding>
             <consoleOutput>true</consoleOutput>
             <failsOnError>true</failsOnError>
@@ -360,6 +419,23 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <!-- jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-jar</id>
+              <goals>
+                <goal>jar</goal>
+                <goal>test-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+          </configuration>
         </plugin>
         <!-- javadoc -->
         <plugin>
@@ -475,13 +551,15 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${test.plugin.version}</version>
           <configuration>
-            <skipTests>${skip.surefire.tests}</skipTests>
+            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.surefire.arg}</argLine>
             <excludes>
               <exclude>**/*IntegrationTest.java</exclude>
             </excludes>
-            <trimStackTrace>false</trimStackTrace>
-            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.surefire.arg}</argLine>
+            <parallel>classes</parallel>
             <reportsDirectory>${surefire.report.path}</reportsDirectory>
+            <skipTests>${skip.surefire.tests}</skipTests>
+            <trimStackTrace>false</trimStackTrace>
+            <useUnlimitedThreads>true</useUnlimitedThreads>
           </configuration>
         </plugin>
         <!-- integration test -->
@@ -490,13 +568,15 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${test.plugin.version}</version>
           <configuration>
-            <skipTests>${skip.failsafe.tests}</skipTests>
+            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.failsafe.arg}</argLine>
             <includes>
               <include>**/*IntegrationTest.java</include>
             </includes>
-            <trimStackTrace>false</trimStackTrace>
-            <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true ${jacoco.failsafe.arg}</argLine>
+            <parallel>classes</parallel>
             <reportsDirectory>${failsafe.report.path}</reportsDirectory>
+            <skipTests>${skip.failsafe.tests}</skipTests>
+            <trimStackTrace>false</trimStackTrace>
+            <useUnlimitedThreads>true</useUnlimitedThreads>
           </configuration>
           <executions>
             <execution>
@@ -531,12 +611,12 @@
                   <limit>
                     <counter>LINE</counter>
                     <value>COVEREDRATIO</value>
-                    <minimum>0.90</minimum>
+                    <minimum>${branch.threshold}</minimum>
                   </limit>
                   <limit>
                     <counter>BRANCH</counter>
                     <value>COVEREDRATIO</value>
-                    <minimum>0.90</minimum>
+                    <minimum>${line.threshold}</minimum>
                   </limit>
                 </limits>
               </rule>
@@ -554,6 +634,7 @@
                 <propertyName>jacoco.surefire.arg</propertyName>
                 <destFile>${surefire.agent.path}</destFile>
                 <append>true</append>
+                <skip>${skip.surefire.tests}</skip>
               </configuration>
             </execution>
             <execution>
@@ -565,6 +646,7 @@
               <configuration>
                 <dataFile>${surefire.agent.path}</dataFile>
                 <outputDirectory>${jacoco.surefire.report.path}</outputDirectory>
+                <skip>${skip.surefire.tests}</skip>
               </configuration>
             </execution>
             <!-- failsafe report -->
@@ -578,6 +660,7 @@
                 <destFile>${failsafe.agent.path}</destFile>
                 <propertyName>jacoco.failsafe.arg</propertyName>
                 <append>true</append>
+                <skip>${skip.failsafe.tests}</skip>
               </configuration>
             </execution>
             <execution>
@@ -589,6 +672,7 @@
               <configuration>
                 <dataFile>${failsafe.agent.path}</dataFile>
                 <outputDirectory>${jacoco.failsafe.report.path}</outputDirectory>
+                <skip>${skip.failsafe.tests}</skip>
               </configuration>
             </execution>
             <!-- overall report -->
@@ -627,6 +711,18 @@
                 <outputDirectory>${jacoco.overall.report.path}</outputDirectory>
               </configuration>
             </execution>
+            <!-- fail build if rule not reach -->
+            <execution>
+              <id>jacoco-check</id>
+              <configuration>
+                <dataFile>${overall.agent.path}</dataFile>
+                <skip>${jacoco.skip.coverage.check}</skip>
+              </configuration>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
           </executions>
         </plugin>
         <!-- openapi codegen -->
@@ -648,7 +744,7 @@
             <generateModelTests>false</generateModelTests>
             <generateSupportingFiles>false</generateSupportingFiles>
             <modelNameSuffix>Dto</modelNameSuffix>
-            <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+            <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
           </configuration>
           <executions>
             <execution>
@@ -747,6 +843,38 @@
             </execution>
           </executions>
         </plugin>
+        <!-- build helper maven -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build.helper.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>add_sources</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/main/java</source>
+                </sources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>add_test_sources</id>
+              <phase>generate-test-sources</phase>
+              <goals>
+                <goal>add-test-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/test/java</source>
+                </sources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -806,3 +934,4 @@
     </repository>
   </repositories>
 </project>
+
