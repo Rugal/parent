@@ -224,6 +224,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring.boot.dependency.version}</version>
         <scope>test</scope>
         <!-- exclude junit 4 -->
         <exclusions>
