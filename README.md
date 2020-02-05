@@ -1,7 +1,7 @@
 # parent
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent)  
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_large)  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_shield)
 
 ## release instruction
 
@@ -55,3 +55,6 @@ line.threshold | 0.9 Minimum line coverage threshold
 jacoco.skip.coverage.check | true | Skip test coverage check, this will fail build if threshold not reached
 openapi.codegen.package.root | ${project.groupId}.${project.artifactId}.openapi |
 openapi.codegen.skipIfSpecIsUnchanged | true | Skip codegen if no change in `contract.yml`
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_large)
