@@ -65,6 +65,8 @@
     <openapi.codegen.api.package>${openapi.codegen.package.root}.api</openapi.codegen.api.package>
     <openapi.codegen.invoker.package>${openapi.codegen.package.root}.invoker</openapi.codegen.invoker.package>
     <openapi.codegen.skipIfSpecIsUnchanged>true</openapi.codegen.skipIfSpecIsUnchanged>
+    <!-- checkstyle -->
+    <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
     <!--
         dependency version
     -->
@@ -78,12 +80,15 @@
     <springfox.version>2.9.2</springfox.version>
     <swagger.codegen.version>2.4.8</swagger.codegen.version>
     <faker.version>1.0.1</faker.version>
-    <mockito.version>2.28.2</mockito.version>
+    <mockito.version>3.2.4</mockito.version>
     <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
     <puppycrawl.version>8.29</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
     <testing-harness.version>3.3.0</testing-harness.version>
+    <graphql-starter.version>5.0.2</graphql-starter.version>
+    <graphql-tool.version>5.2.4</graphql-tool.version>
+    <graphql-kickstart.version>6.0.1</graphql-kickstart.version>
     <!--
         plugin version
     -->
@@ -183,6 +188,36 @@
         <artifactId>spotbugs-annotations</artifactId>
         <version>${spotbugs.plugin.version}</version>
       </dependency>
+      <!-- 
+        graphql 
+      -->
+      <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-java-tools</artifactId>
+        <version>${graphql-tool.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-spring-boot-starter</artifactId>
+        <version>${graphql-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>voyager-spring-boot-starter</artifactId>
+        <version>${graphql-kickstart.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>playground-spring-boot-starter</artifactId>
+        <version>${graphql-kickstart.version}</version>
+      </dependency>
+      <!-- test -->
+      <dependency>
+        <groupId>com.graphql-java-kickstart</groupId>
+        <artifactId>graphql-spring-boot-starter-test</artifactId>
+        <version>${graphql-kickstart.version}</version>
+        <scope>test</scope>
+      </dependency>
       <!--
           test
       -->
@@ -272,7 +307,7 @@
           <configuration>
             <configLocation>configuration/checkstyle/checkstyle.xml</configLocation>
             <suppressionsLocation>configuration/checkstyle/suppression.xml</suppressionsLocation>
-            <excludes>target/**/*,**/dto/**/*, **/ExceptionController.java</excludes>
+            <excludes>${checkstyle.exclusion}</excludes>
             <encoding>${project.build.sourceEncoding}</encoding>
             <consoleOutput>true</consoleOutput>
             <failsOnError>true</failsOnError>
