@@ -110,6 +110,7 @@
     <openapi.plugin.version>4.0.2</openapi.plugin.version>
     <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
+    <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -891,6 +892,11 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>ga.rugal.maven</groupId>
+          <artifactId>commitlinter-maven-plugin</artifactId>
+          <version>${commitlinter.plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
