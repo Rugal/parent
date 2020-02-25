@@ -2,6 +2,7 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/ga.rugal/parent)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_shield)
+[![Known Vulnerabilities](https://snyk.io/test/github/Rugal/parent/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/Rugal/parent?targetFile=pom.xml)  
 
 ## download
 
