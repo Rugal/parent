@@ -765,6 +765,7 @@
             <generateSupportingFiles>false</generateSupportingFiles>
             <modelNameSuffix>Dto</modelNameSuffix>
             <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
+            <skip>true</skip>
           </configuration>
           <executions>
             <execution>
