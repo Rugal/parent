@@ -813,7 +813,7 @@
               <schema>test</schema>
             </schemas>
             <installedBy>Rugal Bernstein</installedBy>
-            <configFile>configuration/db/local.properties</configFile>
+            <configFiles>configuration/db/local.properties</configFiles>
             <locations>filesystem:configuration/db/migration</locations>
           </configuration>
         </plugin>
