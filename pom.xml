@@ -67,6 +67,8 @@
     <openapi.codegen.skipIfSpecIsUnchanged>true</openapi.codegen.skipIfSpecIsUnchanged>
     <!-- checkstyle -->
     <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
+    <!-- flyway -->
+    <flyway.schema>test</flyway.schema>
     <!--
         dependency version
     -->
@@ -810,7 +812,7 @@
           <version>${flyway.version}</version>
           <configuration>
             <schemas>
-              <schema>test</schema>
+              <schema>${flyway.schema}</schema>
             </schemas>
             <installedBy>Rugal Bernstein</installedBy>
             <configFiles>configuration/db/local.properties</configFiles>
