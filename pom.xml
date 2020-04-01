@@ -76,6 +76,7 @@
     <!-- refers https://github.com/microsoft/azure-maven-plugins/wiki/Azure-Functions:-Configuration-Details#supported-regions for all valid values -->
     <azure.region>eastus2</azure.region>
     <azure.stagingDirectory>${project.build.directory}/azure-functions/${azure.function.name}</azure.stagingDirectory>
+    <azure.runtime.os>linux</azure.runtime.os>
     <!--
         dependency version
     -->
@@ -102,6 +103,9 @@
     <graphql-kickstart.version>6.0.1</graphql-kickstart.version>
     <!-- azure -->
     <azure-function.version>1.3.1</azure-function.version>
+    <azure-servicebus.version>2.0.0</azure-servicebus.version>
+    <azure-eventhubs.version>3.1.1</azure-eventhubs.version>
+    <azure-messaging-eventhubs.version>5.0.2</azure-messaging-eventhubs.version>
     <!--
         plugin version
     -->
@@ -331,6 +335,21 @@
         <groupId>com.microsoft.azure.functions</groupId>
         <artifactId>azure-functions-java-library</artifactId>
         <version>${azure-function.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-servicebus</artifactId>
+        <version>${azure-servicebus.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-eventhubs</artifactId>
+        <version>${azure-eventhubs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-messaging-eventhubs</artifactId>
+        <version>${azure-messaging-eventhubs.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -599,7 +618,7 @@
             <region>${azure.region}</region>
             <runtime>
               <!-- runtime os, could be windows, linux or docker-->
-              <os>linux</os>
+              <os>${azure.runtime.os}</os>
               <!-- for docker function, please set the following parameters -->
               <!-- <image>[hub-user/]repo-name[:tag]</image> -->
               <!-- <serverId></serverId> -->
