@@ -102,6 +102,7 @@
     <graphql-tool.version>5.2.4</graphql-tool.version>
     <graphql-kickstart.version>6.0.1</graphql-kickstart.version>
     <dagger.version>2.27</dagger.version>
+    <javax.validation.version>2.0.1.Final</javax.validation.version>
     <!-- azure -->
     <azure-function.version>1.3.1</azure-function.version>
     <azure-servicebus.version>3.2.0</azure-servicebus.version>
@@ -291,6 +292,11 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>${javax.validation.version}</version>
       </dependency>
       <!-- 
           maven plugin development
