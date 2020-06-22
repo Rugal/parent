@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.10.0</version>
+  <version>1.10.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://rug.al</url>
   <name>Parent POM object for Rugal</name>
@@ -13,7 +13,7 @@
     <connection>scm:git:ssh://git@github.com/Rugal/${project.artifactId}.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Rugal/${project.artifactId}.git</developerConnection>
     <url>https://github.com/Rugal/parent</url>
-    <tag>v1.10.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
