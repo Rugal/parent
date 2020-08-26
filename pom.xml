@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.10.1-SNAPSHOT</version>
+  <version>1.11.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://rug.al</url>
   <name>Parent POM object for Rugal</name>
@@ -65,6 +65,9 @@
     <openapi.codegen.api.package>${openapi.codegen.package.root}.api</openapi.codegen.api.package>
     <openapi.codegen.invoker.package>${openapi.codegen.package.root}.invoker</openapi.codegen.invoker.package>
     <openapi.codegen.skipIfSpecIsUnchanged>true</openapi.codegen.skipIfSpecIsUnchanged>
+    <!-- graphql codegen -->
+    <graphql.package.name>${project.groupId}.${project.artifactId}.graphql</graphql.package.name>
+    <graphql.schema.path>src/main/resources/graphql</graphql.schema.path>
     <!-- checkstyle -->
     <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
     <!-- flyway -->
@@ -82,8 +85,8 @@
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.12</lombok.version>
-    <spring.cloud.dependency.version>Hoxton.SR3</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.2.5.RELEASE</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>Hoxton.SR7</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.3.3.RELEASE</spring.boot.dependency.version>
     <mapstruct.version>1.3.1.Final</mapstruct.version>
     <swagger.version>1.6.0</swagger.version>
     <openapi.jackson.version>0.2.0</openapi.jackson.version>
@@ -130,8 +133,9 @@
     <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
+    <graphql-codegen.plugin.version>3.0.0</graphql-codegen.plugin.version>
     <!-- azure -->
-    <azure-function.plugin.version>1.4.1</azure-function.plugin.version>
+    <azure-function.plugin.version>3.0.0</azure-function.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -1060,6 +1064,27 @@
                 <overWriteIfNewer>true</overWriteIfNewer>
                 <includeScope>runtime</includeScope>
                 <excludeArtifactIds>azure-functions-java-library</excludeArtifactIds>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- graphql codegen -->
+        <plugin>
+          <groupId>io.github.kobylynskyi</groupId>
+          <artifactId>graphql-codegen-maven-plugin</artifactId>
+          <version>${graphql-codegen.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <configuration>
+                <graphqlSchemas>
+                  <rootDir>src/main/resources/graphql</rootDir>
+                </graphqlSchemas>
+                <outputDir>${project.build.directory}/generated-sources/graphql</outputDir>
+                <packageName>${graphql.package.name}</packageName>
+                <modelNameSuffix>Dto</modelNameSuffix>
               </configuration>
             </execution>
           </executions>

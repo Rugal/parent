@@ -45,6 +45,7 @@ for snapshot version, please add sonatype:
 
 name | default | note
 ---|---|---
+java.version | 11 | Java Development Kit version
 skip.surefire.tests | true | Skip unit test & coverage report
 skip.failsafe.tests | true | Skip integration test & coverage report
 branch.threshold | 0.9 | Minimum branch coverage threshold
@@ -60,6 +61,8 @@ azure.servicePlanName | ASP-eastus2206136-837f |  service plan name
 azure.region | eastus2 | function app region
 azure.stagingDirectory | ${project.build.directory}/azure-functions/${azure.function.name} | staging directory
 azure.runtime.os | linux | operating system function app
+graphql.package.name | ${project.groupId}.${project.artifactId}.graphql | package for graphql codegen
+graphql.schema.path|src/main/resources/graphql|the schema file of graphql for codegen
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_large)  
