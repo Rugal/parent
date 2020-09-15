@@ -260,6 +260,12 @@
         <version>${graphql-kickstart.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>com.graphql-java</groupId>
+        <artifactId>graphql-spring-boot-starter-test</artifactId>
+        <version>${graphql-starter.version}</version>
+        <scope>test</scope>
+      </dependency>
       <!--
           test
       -->
