@@ -243,6 +243,7 @@
         <artifactId>graphql-spring-boot-starter</artifactId>
         <version>${graphql-starter.version}</version>
       </dependency>
+      <!-- UI -->
       <dependency>
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>voyager-spring-boot-starter</artifactId>
@@ -1089,9 +1090,9 @@
             <graphqlSchemas>
               <rootDir>src/main/resources/graphql</rootDir>
             </graphqlSchemas>
+            <jsonConfigurationFile>configuration/graphql-codegen.json</jsonConfigurationFile>
             <outputDir>${project.build.directory}/generated-sources/graphql</outputDir>
             <packageName>${graphql.package.name}</packageName>
-            <modelNameSuffix>Dto</modelNameSuffix>
           </configuration>
         </plugin>
       </plugins>
