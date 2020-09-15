@@ -71,7 +71,7 @@
     <!-- checkstyle -->
     <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
     <!-- flyway -->
-    <flyway.schema>test</flyway.schema>
+    <flyway.schemas>test</flyway.schemas>
     <!-- azure -->
     <azure.function.name>${project.artifactId}</azure.function.name>
     <azure.resourceGroup>eastus2-206136</azure.resourceGroup>
@@ -135,7 +135,7 @@
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
     <graphql-codegen.plugin.version>3.1.0</graphql-codegen.plugin.version>
     <!-- azure -->
-    <azure-function.plugin.version>3.0.0</azure-function.plugin.version>
+    <azure-function.plugin.version>1.8.0</azure-function.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -905,7 +905,7 @@
           <artifactId>flyway-maven-plugin</artifactId>
           <version>${flyway.version}</version>
           <configuration>
-            <schemas>${flyway.schema}</schemas>
+            <schemas>${flyway.schemas}</schemas>
             <installedBy>Rugal Bernstein</installedBy>
             <configFiles>configuration/db/local.properties</configFiles>
             <locations>filesystem:configuration/db/migration</locations>
