@@ -70,8 +70,6 @@
     <graphql.schema.path>src/main/resources/graphql</graphql.schema.path>
     <!-- checkstyle -->
     <checkstyle.exclusion>target/**/*,**/dto/**/*, **/ExceptionController.java</checkstyle.exclusion>
-    <!-- flyway -->
-    <flyway.schemas>test</flyway.schemas>
     <!-- azure -->
     <azure.function.name>${project.artifactId}</azure.function.name>
     <azure.resourceGroup>eastus2-206136</azure.resourceGroup>
@@ -912,7 +910,6 @@
           <artifactId>flyway-maven-plugin</artifactId>
           <version>${flyway.version}</version>
           <configuration>
-            <schemas>${flyway.schemas}</schemas>
             <installedBy>Rugal Bernstein</installedBy>
             <configFiles>configuration/db/local.properties</configFiles>
             <locations>filesystem:configuration/db/migration</locations>
