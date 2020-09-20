@@ -228,8 +228,8 @@
         <artifactId>spotbugs-annotations</artifactId>
         <version>${spotbugs.plugin.version}</version>
       </dependency>
-      <!-- 
-        graphql 
+      <!--
+        graphql
       -->
       <dependency>
         <groupId>com.graphql-java</groupId>
@@ -308,7 +308,7 @@
         <artifactId>validation-api</artifactId>
         <version>${javax.validation.version}</version>
       </dependency>
-      <!-- 
+      <!--
           maven plugin development
       -->
       <dependency>
@@ -911,8 +911,8 @@
           <version>${flyway.version}</version>
           <configuration>
             <installedBy>Rugal Bernstein</installedBy>
-            <configFiles>configuration/db/local.properties</configFiles>
-            <locations>filesystem:configuration/db/migration</locations>
+            <configFiles>src/main/resources/database/local.properties</configFiles>
+            <locations>filesystem:src/main/resources/database/migration</locations>
           </configuration>
         </plugin>
         <!-- compiler -->
