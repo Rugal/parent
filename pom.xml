@@ -98,8 +98,7 @@
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
     <testing-harness.version>3.3.0</testing-harness.version>
-    <graphql-starter.version>5.0.2</graphql-starter.version>
-    <graphql-tool.version>5.2.4</graphql-tool.version>
+    <graphql-tool.version>6.2.0</graphql-tool.version>
     <graphql-kickstart.version>8.0.0</graphql-kickstart.version>
     <dagger.version>2.27</dagger.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
@@ -233,21 +232,11 @@
       -->
       <!-- tools -->
       <dependency>
-        <groupId>com.graphql-java</groupId>
+        <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>graphql-java-tools</artifactId>
         <version>${graphql-tool.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.graphql-java-kickstart</groupId>
-        <artifactId>graphql-java-tools</artifactId>
-        <version>${graphql-kickstart.version}</version>
-      </dependency>
       <!-- spring boot integration -->
-      <dependency>
-        <groupId>com.graphql-java</groupId>
-        <artifactId>graphql-spring-boot-starter</artifactId>
-        <version>${graphql-starter.version}</version>
-      </dependency>
       <dependency>
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>graphql-spring-boot-starter</artifactId>
@@ -269,12 +258,6 @@
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>graphql-spring-boot-starter-test</artifactId>
         <version>${graphql-kickstart.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.graphql-java</groupId>
-        <artifactId>graphql-spring-boot-starter-test</artifactId>
-        <version>${graphql-starter.version}</version>
         <scope>test</scope>
       </dependency>
       <!--
