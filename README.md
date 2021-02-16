@@ -72,5 +72,16 @@ graphql.schema.path|src/main/resources/graphql|the schema file of graphql for co
 ## release command
 
 ```bash
+# prepare release version and next snapshot version
+# upload artifact to sonatype
 mvn -P sonatype release:prepare release:perform
+# list release candidates
+mvn nexus-staging:rc-list
+# use this command to close the release candidate
+# while closing, repository will impose many checks
+# only if you pass all the tests can you run into next phase
+mvn nexus-staging:rc-close -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
+# use this command to actually release the release candidate if you pass all the checks
+# once it's done, the staging repository will be closed
+mvn nexus-staging:release -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
 ```
