@@ -91,7 +91,7 @@
     <springfox.version>3.0.0</springfox.version>
     <springdoc.version>1.2.33</springdoc.version>
     <swagger.parser.version>2.0.18</swagger.parser.version>
-    <swagger.codegen.version>2.4.12</swagger.codegen.version>
+    <swagger.codegen.version>2.4.19</swagger.codegen.version>
     <faker.version>1.0.2</faker.version>
     <mockito.version>3.9.0</mockito.version>
     <puppycrawl.version>8.40</puppycrawl.version>
