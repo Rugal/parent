@@ -130,7 +130,7 @@
     <pmd.plugin.version>3.14.0</pmd.plugin.version>
     <flyway.version>6.5.5</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
-    <openapi.plugin.version>5.0.1</openapi.plugin.version>
+    <openapi.plugin.version>5.1.0</openapi.plugin.version>
     <build.helper.plugin.version>3.2.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
