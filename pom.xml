@@ -134,7 +134,7 @@
     <build.helper.plugin.version>3.2.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
-    <graphql-codegen.plugin.version>3.1.0</graphql-codegen.plugin.version>
+    <graphql-codegen.plugin.version>5.2.0</graphql-codegen.plugin.version>
     <!-- azure -->
     <azure-function.plugin.version>1.8.0</azure-function.plugin.version>
   </properties>
@@ -1116,7 +1116,7 @@
             <graphqlSchemas>
               <rootDir>src/main/resources/graphql</rootDir>
             </graphqlSchemas>
-            <jsonConfigurationFile>configuration/graphql-codegen.json</jsonConfigurationFile>
+            <configurationFiles>configuration/graphql-codegen.json</configurationFiles>
             <outputDir>${project.build.directory}/generated-sources/graphql</outputDir>
             <packageName>${graphql.package.name}</packageName>
           </configuration>
