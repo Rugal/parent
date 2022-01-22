@@ -84,7 +84,7 @@
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.18</lombok.version>
     <spring.cloud.dependency.version>2020.0.2</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.4.5</spring.boot.dependency.version>
+    <spring.boot.dependency.version>2.6.3</spring.boot.dependency.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <swagger.version>1.6.2</swagger.version>
     <openapi.jackson.version>0.2.1</openapi.jackson.version>
