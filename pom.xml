@@ -135,6 +135,7 @@
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
     <graphql-codegen.plugin.version>5.2.0</graphql-codegen.plugin.version>
+    <docck.plugin.version>1.1</docck.plugin.version>
     <!-- azure -->
     <azure-function.plugin.version>1.8.0</azure-function.plugin.version>
   </properties>
@@ -1126,6 +1127,19 @@
           <groupId>fr.jcgay.maven.plugins</groupId>
           <artifactId>buildplan-maven-plugin</artifactId>
           <version>${buildplan.plugin.version}</version>
+        </plugin>
+        <!-- document checker -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-docck-plugin</artifactId>
+          <version>${docck.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
