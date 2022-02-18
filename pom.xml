@@ -105,6 +105,7 @@
     <testing-harness.version>3.3.0</testing-harness.version>
     <graphql-tool.version>12.0.2</graphql-tool.version>
     <graphql-kickstart.version>12.0.0</graphql-kickstart.version>
+    <playground.version>11.1.0</playground.version>
     <dagger.version>2.34.1</dagger.version>
     <guava.version>30.1.1-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
@@ -259,12 +260,12 @@
       <dependency>
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>voyager-spring-boot-starter</artifactId>
-        <version>${graphql-kickstart.version}</version>
+        <version>${playground.version}</version>
       </dependency>
       <dependency>
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>playground-spring-boot-starter</artifactId>
-        <version>${graphql-kickstart.version}</version>
+        <version>${playground.version}</version>
       </dependency>
       <!-- test -->
       <dependency>
