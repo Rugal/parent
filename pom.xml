@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
   <version>1.14.1-SNAPSHOT</version>
+
   <packaging>pom</packaging>
-  <url>https://github.com/Rugal/parent</url>
+
   <name>Parent POM object for Rugal</name>
   <description>This is to simplify Spring Boot based project configuration</description>
+  <url>https://github.com/Rugal/${project.artifactId}</url>
   
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/Rugal/parent/issues</url>
+    <url>${project.url}/issues</url>
   </issueManagement>
 
   <scm>
     <connection>scm:git:ssh://git@github.com/Rugal/${project.artifactId}.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/Rugal/${project.artifactId}.git</developerConnection>
-    <url>https://github.com/Rugal/parent</url>
+    <developerConnection>${project.scm.connection}</developerConnection>
+    <url>${project.url}</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -87,9 +90,9 @@
         dependency version
     -->
     <servlet.version>4.0.1</servlet.version>
-    <lombok.version>1.18.18</lombok.version>
-    <spring.cloud.dependency.version>2020.0.2</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.6.3</spring.boot.dependency.version>
+    <lombok.version>1.18.24</lombok.version>
+    <spring.cloud.dependency.version>2021.0.1</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>2.6.7</spring.boot.dependency.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <swagger.version>1.6.2</swagger.version>
     <openapi.jackson.version>0.2.1</openapi.jackson.version>
@@ -112,6 +115,7 @@
     <jsonwebtoken.version>0.11.2</jsonwebtoken.version>
     <vladmihalcea.version>2.10.1</vladmihalcea.version>
     <geolatte-geom.version>1.8.0</geolatte-geom.version>
+    <spotbugs.dependency.version>4.6.0</spotbugs.dependency.version>
     <!-- azure -->
     <azure-function.version>1.3.1</azure-function.version>
     <azure-messaging-eventhubs.version>5.1.1</azure-messaging-eventhubs.version>
@@ -132,7 +136,7 @@
     <release.plugin.version>2.5.3</release.plugin.version>
     <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-    <spotbugs.plugin.version>4.5.3</spotbugs.plugin.version>
+    <spotbugs.plugin.version>4.6.0.0</spotbugs.plugin.version>
     <pmd.plugin.version>3.14.0</pmd.plugin.version>
     <flyway.version>6.5.5</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
@@ -239,7 +243,7 @@
       <dependency>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-annotations</artifactId>
-        <version>${spotbugs.plugin.version}</version>
+        <version>${spotbugs.dependency.version}</version>
       </dependency>
       <!--
         graphql
@@ -417,6 +421,54 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!--
+          initialization
+        -->
+        <!-- git commit id -->
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>${git.commit.id.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>get-git-info</id>
+              <goals>
+                <goal>revision</goal>
+              </goals>
+              <phase>initialize</phase>
+            </execution>
+          </executions>
+          <configuration>
+            <failOnNoGitDirectory>false</failOnNoGitDirectory>
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+            <verbose>false</verbose>
+            <failOnNoGitDirectory>false</failOnNoGitDirectory>
+            <generateGitPropertiesFilename>
+              ${project.build.outputDirectory}/git.properties
+            </generateGitPropertiesFilename>
+            <gitDescribe>
+              <skip>false</skip>
+              <always>false</always>
+              <dirty>-dirty</dirty>
+            </gitDescribe>
+          </configuration>
+        </plugin>
+        <!--
+          validate
+        -->
+        <!-- document checker -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-docck-plugin</artifactId>
+          <version>${docck.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <!-- checkstyle -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -473,6 +525,12 @@
             </execution>
           </executions>
         </plugin>
+        <!-- commit linter -->
+        <plugin>
+          <groupId>ga.rugal.maven</groupId>
+          <artifactId>commitlinter-maven-plugin</artifactId>
+          <version>${commitlinter.plugin.version}</version>
+        </plugin>
         <!-- spotbugs -->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
@@ -526,181 +584,156 @@
             </execution>
           </executions>
         </plugin>
-        <!-- source -->
+        <!--
+          generate-sources
+        -->
+        <!-- build helper maven -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${source.plugin.version}</version>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build.helper.plugin.version}</version>
           <executions>
             <execution>
-              <id>attach-sources</id>
+              <id>add_sources</id>
+              <phase>generate-sources</phase>
               <goals>
-                <goal>jar-no-fork</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- jar -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>${source.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>default-jar</id>
-              <goals>
-                <goal>jar</goal>
-                <goal>test-jar</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-          </configuration>
-        </plugin>
-        <!-- javadoc -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${source.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>attach-javadocs</id>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- deploy -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${deploy.plugin.version}</version>
-        </plugin>
-        <!-- gpg -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>${gpg.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>sign-artifacts</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>sign</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- release -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${release.plugin.version}</version>
-          <configuration>
-            <tagNameFormat>v@{project.version}</tagNameFormat>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-            <useReleaseProfile>false</useReleaseProfile>
-            <releaseProfiles>release</releaseProfiles>
-            <goals>deploy</goals>
-          </configuration>
-        </plugin>
-        <!-- nexus -->
-        <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${nexus.staging.plugin.version}</version>
-          <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrh</serverId>
-            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-          </configuration>
-        </plugin>
-        <!-- git commit id -->
-        <plugin>
-          <groupId>pl.project13.maven</groupId>
-          <artifactId>git-commit-id-plugin</artifactId>
-          <version>${git.commit.id.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>get-git-info</id>
-              <goals>
-                <goal>revision</goal>
-              </goals>
-              <phase>initialize</phase>
-            </execution>
-          </executions>
-          <configuration>
-            <failOnNoGitDirectory>false</failOnNoGitDirectory>
-            <generateGitPropertiesFile>true</generateGitPropertiesFile>
-            <verbose>false</verbose>
-            <failOnNoGitDirectory>false</failOnNoGitDirectory>
-            <generateGitPropertiesFilename>
-              ${project.build.outputDirectory}/git.properties
-            </generateGitPropertiesFilename>
-            <gitDescribe>
-              <skip>false</skip>
-              <always>false</always>
-              <dirty>-dirty</dirty>
-            </gitDescribe>
-          </configuration>
-        </plugin>
-        <!-- spring boot -->
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring.boot.dependency.version}</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
+                <goal>add-source</goal>
               </goals>
               <configuration>
-                <classifier>exec</classifier>
+                <sources>
+                  <source>src/main/java</source>
+                </sources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>add_test_sources</id>
+              <phase>generate-test-sources</phase>
+              <goals>
+                <goal>add-test-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/test/java</source>
+                </sources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- sisu index -->
+        <plugin>
+          <groupId>org.eclipse.sisu</groupId>
+          <artifactId>sisu-maven-plugin</artifactId>
+          <version>${sisu.plugin.version}</version>
+          <!--http://maven.apache.org/maven-jsr330.html-->
+          <executions>
+            <execution>
+              <id>generate-index</id>
+              <goals>
+                <goal>main-index</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- graphql codegen -->
+        <plugin>
+          <groupId>io.github.kobylynskyi</groupId>
+          <artifactId>graphql-codegen-maven-plugin</artifactId>
+          <version>${graphql-codegen.plugin.version}</version>
+        </plugin>
+        <!-- openapi codegen -->
+        <!--https://openapi-generator.tech/docs/generators.html-->
+        <plugin>
+          <groupId>org.openapitools</groupId>
+          <artifactId>openapi-generator-maven-plugin</artifactId>
+          <version>${openapi.plugin.version}</version>
+          <configuration>
+            <configOptions>
+              <dateLibrary>java8</dateLibrary>
+              <interfaceOnly>true</interfaceOnly>
+              <skipDefaultInterface>true</skipDefaultInterface>
+            </configOptions>
+            <enablePostProcessFile>false</enablePostProcessFile>
+            <generateApis>true</generateApis>
+            <generateApiDocumentation>false</generateApiDocumentation>
+            <generateApiTests>false</generateApiTests>
+            <generateModelDocumentation>false</generateModelDocumentation>
+            <generateModelTests>false</generateModelTests>
+            <generateSupportingFiles>false</generateSupportingFiles>
+            <modelNameSuffix>Dto</modelNameSuffix>
+            <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
+            <skip>true</skip>
+          </configuration>
+          <executions>
+            <execution>
+              <id>openapi-codegen-server</id>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <configuration>
+                <apiPackage>${openapi.codegen.api.package}</apiPackage>
+                <configOptions>
+                  <library>spring-boot</library>
+                </configOptions>
+                <inputSpec>configuration/openapi/contract.yml</inputSpec>
+                <invokerPackage>${openapi.codegen.invoker.package}</invokerPackage>
+                <generatorName>spring</generatorName>
+                <modelPackage>${openapi.codegen.model.package}</modelPackage>
+              </configuration>
+            </execution>
+            <execution>
+              <id>openapi-codegen-client</id>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+              <configuration>
+                <apiPackage>${openapi.codegen.package.root}.client.api</apiPackage>
+                <configOptions>
+                  <library>resttemplate</library>
+                </configOptions>
+                <inputSpec>configuration/openapi/contract.yml</inputSpec>
+                <invokerPackage>${openapi.codegen.package.root}.client.invoker</invokerPackage>
+                <generatorName>java</generatorName>
+                <modelPackage>${openapi.codegen.package.root}.client.model</modelPackage>
               </configuration>
             </execution>
           </executions>
         </plugin>
         <!--
-          Azure
+          compile
         -->
+        <!-- compiler -->
         <plugin>
-          <groupId>com.microsoft.azure</groupId>
-          <artifactId>azure-functions-maven-plugin</artifactId>
-          <version>${azure-function.plugin.version}</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler.plugin.version}</version>
           <configuration>
-            <!-- function app name -->
-            <appName>${azure.function.name}</appName>
-            <!-- function app resource group -->
-            <resourceGroup>${azure.resourceGroup}</resourceGroup>
-            <!-- function app service plan name -->
-            <appServicePlanName>${azure.servicePlanName}</appServicePlanName>
-            <!-- function app region-->
-            <region>${azure.region}</region>
-            <runtime>
-              <!-- runtime os, could be windows, linux or docker-->
-              <os>${azure.runtime.os}</os>
-              <!-- for docker function, please set the following parameters -->
-              <!-- <image>[hub-user/]repo-name[:tag]</image> -->
-              <!-- <serverId></serverId> -->
-              <!-- <registryUrl></registryUrl>  -->
-            </runtime>
-            <appSettings>
-              <property>
-                <name>FUNCTIONS_EXTENSION_VERSION</name>
-                <value>~3</value>
-              </property>
-            </appSettings>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <!--to enable different java build version-->
+            <fork>true</fork>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+              <path>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+              </path>
+              <path>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger-compiler</artifactId>
+                <version>${dagger.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <compilerArgs>
+              <compilerArg>
+                -Amapstruct.defaultComponentModel=spring
+              </compilerArg>
+            </compilerArgs>
           </configuration>
-          <executions>
-            <execution>
-              <id>package-functions</id>
-              <goals>
-                <goal>package</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
         <!--
             Test
@@ -722,6 +755,9 @@
             <useUnlimitedThreads>true</useUnlimitedThreads>
           </configuration>
         </plugin>
+        <!--
+          verify
+        -->
         <!-- integration test -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -885,64 +921,160 @@
             </execution>
           </executions>
         </plugin>
-        <!-- openapi codegen -->
-        <!--https://openapi-generator.tech/docs/generators.html-->
+        <!-- gpg -->
         <plugin>
-          <groupId>org.openapitools</groupId>
-          <artifactId>openapi-generator-maven-plugin</artifactId>
-          <version>${openapi.plugin.version}</version>
-          <configuration>
-            <configOptions>
-              <dateLibrary>java8</dateLibrary>
-              <interfaceOnly>true</interfaceOnly>
-              <skipDefaultInterface>true</skipDefaultInterface>
-            </configOptions>
-            <enablePostProcessFile>false</enablePostProcessFile>
-            <generateApis>true</generateApis>
-            <generateApiDocumentation>false</generateApiDocumentation>
-            <generateApiTests>false</generateApiTests>
-            <generateModelDocumentation>false</generateModelDocumentation>
-            <generateModelTests>false</generateModelTests>
-            <generateSupportingFiles>false</generateSupportingFiles>
-            <modelNameSuffix>Dto</modelNameSuffix>
-            <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
-            <skip>true</skip>
-          </configuration>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>${gpg.plugin.version}</version>
           <executions>
             <execution>
-              <id>openapi-codegen-server</id>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
               <goals>
-                <goal>generate</goal>
+                <goal>sign</goal>
               </goals>
-              <configuration>
-                <apiPackage>${openapi.codegen.api.package}</apiPackage>
-                <configOptions>
-                  <library>spring-boot</library>
-                </configOptions>
-                <inputSpec>configuration/openapi/contract.yml</inputSpec>
-                <invokerPackage>${openapi.codegen.invoker.package}</invokerPackage>
-                <generatorName>spring</generatorName>
-                <modelPackage>${openapi.codegen.model.package}</modelPackage>
-              </configuration>
             </execution>
+          </executions>
+        </plugin>
+        <!--
+          packaging
+        -->
+        <!-- spring boot -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring.boot.dependency.version}</version>
+          <executions>
             <execution>
-              <id>openapi-codegen-client</id>
               <goals>
-                <goal>generate</goal>
+                <goal>repackage</goal>
               </goals>
               <configuration>
-                <apiPackage>${openapi.codegen.package.root}.client.api</apiPackage>
-                <configOptions>
-                  <library>resttemplate</library>
-                </configOptions>
-                <inputSpec>configuration/openapi/contract.yml</inputSpec>
-                <invokerPackage>${openapi.codegen.package.root}.client.invoker</invokerPackage>
-                <generatorName>java</generatorName>
-                <modelPackage>${openapi.codegen.package.root}.client.model</modelPackage>
+                <classifier>exec</classifier>
               </configuration>
             </execution>
           </executions>
         </plugin>
+        <!-- Azure -->
+        <plugin>
+          <groupId>com.microsoft.azure</groupId>
+          <artifactId>azure-functions-maven-plugin</artifactId>
+          <version>${azure-function.plugin.version}</version>
+          <configuration>
+            <!-- function app name -->
+            <appName>${azure.function.name}</appName>
+            <!-- function app resource group -->
+            <resourceGroup>${azure.resourceGroup}</resourceGroup>
+            <!-- function app service plan name -->
+            <appServicePlanName>${azure.servicePlanName}</appServicePlanName>
+            <!-- function app region-->
+            <region>${azure.region}</region>
+            <runtime>
+              <!-- runtime os, could be windows, linux or docker-->
+              <os>${azure.runtime.os}</os>
+              <!-- for docker function, please set the following parameters -->
+              <!-- <image>[hub-user/]repo-name[:tag]</image> -->
+              <!-- <serverId></serverId> -->
+              <!-- <registryUrl></registryUrl>  -->
+            </runtime>
+            <appSettings>
+              <property>
+                <name>FUNCTIONS_EXTENSION_VERSION</name>
+                <value>~3</value>
+              </property>
+            </appSettings>
+          </configuration>
+          <executions>
+            <execution>
+              <id>package-functions</id>
+              <goals>
+                <goal>package</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- source -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- jar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-jar</id>
+              <goals>
+                <goal>jar</goal>
+                <goal>test-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+          </configuration>
+        </plugin>
+        <!-- javadoc -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- release -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${release.plugin.version}</version>
+          <configuration>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <useReleaseProfile>false</useReleaseProfile>
+            <releaseProfiles>release</releaseProfiles>
+            <goals>deploy</goals>
+          </configuration>
+        </plugin>
+        <!--
+          deploy
+        -->
+        <!-- deploy -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${deploy.plugin.version}</version>
+        </plugin>
+        <!-- nexus -->
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>${nexus.staging.plugin.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
+        <!--
+          others
+        -->
         <!-- flyway plugin -->
         <plugin>
           <groupId>org.flywaydb</groupId>
@@ -952,40 +1084,6 @@
             <installedBy>Rugal Bernstein</installedBy>
             <configFiles>src/main/resources/database/local.properties</configFiles>
             <locations>filesystem:src/main/resources/database/migration</locations>
-          </configuration>
-        </plugin>
-        <!-- compiler -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${compiler.plugin.version}</version>
-          <configuration>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-            <!--to enable different java build version-->
-            <fork>true</fork>
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
-              <path>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${mapstruct.version}</version>
-              </path>
-              <path>
-                <groupId>com.google.dagger</groupId>
-                <artifactId>dagger-compiler</artifactId>
-                <version>${dagger.version}</version>
-              </path>
-            </annotationProcessorPaths>
-            <compilerArgs>
-              <compilerArg>
-                -Amapstruct.defaultComponentModel=spring
-              </compilerArg>
-            </compilerArgs>
           </configuration>
         </plugin>
         <!-- plugin management -->
@@ -1006,64 +1104,11 @@
             </execution>
           </executions>
         </plugin>
-        <!-- build helper maven -->
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>${build.helper.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>add_sources</id>
-              <phase>generate-sources</phase>
-              <goals>
-                <goal>add-source</goal>
-              </goals>
-              <configuration>
-                <sources>
-                  <source>src/main/java</source>
-                </sources>
-              </configuration>
-            </execution>
-            <execution>
-              <id>add_test_sources</id>
-              <phase>generate-test-sources</phase>
-              <goals>
-                <goal>add-test-source</goal>
-              </goals>
-              <configuration>
-                <sources>
-                  <source>src/test/java</source>
-                </sources>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
         <!-- cross source reference -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
           <version>${jxr.plugin.version</version>
-        </plugin>
-        <!-- sisu index -->
-        <plugin>
-          <groupId>org.eclipse.sisu</groupId>
-          <artifactId>sisu-maven-plugin</artifactId>
-          <version>${sisu.plugin.version}</version>
-          <!--http://maven.apache.org/maven-jsr330.html-->
-          <executions>
-            <execution>
-              <id>generate-index</id>
-              <goals>
-                <goal>main-index</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- commit linter -->
-        <plugin>
-          <groupId>ga.rugal.maven</groupId>
-          <artifactId>commitlinter-maven-plugin</artifactId>
-          <version>${commitlinter.plugin.version}</version>
         </plugin>
         <!-- resources -->
         <plugin>
@@ -1116,32 +1161,15 @@
             </execution>
           </executions>
         </plugin>
-        <!-- graphql codegen -->
-        <plugin>
-          <groupId>io.github.kobylynskyi</groupId>
-          <artifactId>graphql-codegen-maven-plugin</artifactId>
-          <version>${graphql-codegen.plugin.version}</version>
-        </plugin>
         <!-- build plan -->
         <plugin>
           <groupId>fr.jcgay.maven.plugins</groupId>
           <artifactId>buildplan-maven-plugin</artifactId>
           <version>${buildplan.plugin.version}</version>
         </plugin>
-        <!-- document checker -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-docck-plugin</artifactId>
-          <version>${docck.plugin.version}</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <!-- site reporting -->
+        <!--
+          reporting
+        -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
@@ -1211,4 +1239,3 @@
     </repository>
   </repositories>
 </project>
-
