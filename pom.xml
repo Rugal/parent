@@ -11,7 +11,7 @@
   <name>Parent POM object for Rugal</name>
   <description>This is to simplify Spring Boot based project configuration</description>
   <url>https://github.com/Rugal/${project.artifactId}</url>
-  
+
   <issueManagement>
     <system>github</system>
     <url>${project.url}/issues</url>
@@ -109,7 +109,7 @@
     <graphql-tool.version>12.0.2</graphql-tool.version>
     <graphql-kickstart.version>12.0.0</graphql-kickstart.version>
     <playground.version>11.1.0</playground.version>
-    <dagger.version>2.34.1</dagger.version>
+    <dagger.version>2.41</dagger.version>
     <guava.version>30.1.1-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
     <jsonwebtoken.version>0.11.2</jsonwebtoken.version>
@@ -1108,7 +1108,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jxr-plugin</artifactId>
-          <version>${jxr.plugin.version</version>
+          <version>${jxr.plugin.version}</version>
         </plugin>
         <!-- resources -->
         <plugin>
