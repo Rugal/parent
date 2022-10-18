@@ -660,6 +660,7 @@
             <generateModelDocumentation>false</generateModelDocumentation>
             <generateModelTests>false</generateModelTests>
             <generateSupportingFiles>false</generateSupportingFiles>
+            <inputSpec>${project.basedir}/configuration/openapi/contract.yml</inputSpec>
             <modelNameSuffix>Dto</modelNameSuffix>
             <skipIfSpecIsUnchanged>${openapi.codegen.skipIfSpecIsUnchanged}</skipIfSpecIsUnchanged>
             <skip>true</skip>
@@ -675,7 +676,6 @@
                 <configOptions>
                   <library>spring-boot</library>
                 </configOptions>
-                <inputSpec>configuration/openapi/contract.yml</inputSpec>
                 <invokerPackage>${openapi.codegen.invoker.package}</invokerPackage>
                 <generatorName>spring</generatorName>
                 <modelPackage>${openapi.codegen.model.package}</modelPackage>
@@ -691,7 +691,6 @@
                 <configOptions>
                   <library>resttemplate</library>
                 </configOptions>
-                <inputSpec>configuration/openapi/contract.yml</inputSpec>
                 <invokerPackage>${openapi.codegen.package.root}.client.invoker</invokerPackage>
                 <generatorName>java</generatorName>
                 <modelPackage>${openapi.codegen.package.root}.client.model</modelPackage>
