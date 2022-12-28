@@ -105,6 +105,7 @@
     <puppycrawl.version>8.40</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
+    <maven.plugin.plugin.version>3.7.0</maven.plugin.plugin.version>
     <testing-harness.version>3.3.0</testing-harness.version>
     <graphql-tool.version>12.0.2</graphql-tool.version>
     <graphql-kickstart.version>12.0.0</graphql-kickstart.version>
@@ -359,7 +360,7 @@
       <dependency>
         <groupId>org.apache.maven.plugin-tools</groupId>
         <artifactId>maven-plugin-annotations</artifactId>
-        <version>${maven.plugin.development.version}</version>
+        <version>${maven.plugin.plugin.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.plugin-testing</groupId>
@@ -1090,7 +1091,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>${maven.plugin.development.version}</version>
+          <version>${maven.plugin.plugin.version}</version>
           <configuration>
             <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
           </configuration>
