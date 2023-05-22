@@ -43,7 +43,7 @@
         configuration
     -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <!-- repository -->
     <sonatype.snapshot>https://oss.sonatype.org/content/repositories/snapshots</sonatype.snapshot>
     <sonatype.staging>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatype.staging>
@@ -135,10 +135,10 @@
     <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <release.plugin.version>2.5.3</release.plugin.version>
-    <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+    <checkstyle.plugin.version>3.2.2</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-    <spotbugs.plugin.version>4.7.3.0</spotbugs.plugin.version>
-    <pmd.plugin.version>3.19.0</pmd.plugin.version>
+    <spotbugs.plugin.version>4.7.3.4</spotbugs.plugin.version>
+    <pmd.plugin.version>3.21.0</pmd.plugin.version>
     <flyway.version>6.5.5</flyway.version>
     <buildplan.plugin.version>1.3</buildplan.plugin.version>
     <openapi.plugin.version>5.4.0</openapi.plugin.version>
