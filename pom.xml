@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.1.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
   <version>1.16.1-SNAPSHOT</version>
@@ -91,9 +98,9 @@
     -->
     <servlet.version>4.0.1</servlet.version>
     <lombok.version>1.18.24</lombok.version>
-    <spring.cloud.dependency.version>2021.0.1</spring.cloud.dependency.version>
-    <spring.boot.dependency.version>2.7.7</spring.boot.dependency.version>
-    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <spring.cloud.dependency.version>2022.0.2</spring.cloud.dependency.version>
+    <spring.boot.dependency.version>3.1.0</spring.boot.dependency.version>
+    <mapstruct.version>1.5.5.Final</mapstruct.version>
     <swagger.version>1.6.2</swagger.version>
     <openapi.jackson.version>0.2.1</openapi.jackson.version>
     <springfox.version>3.0.0</springfox.version>
@@ -101,7 +108,7 @@
     <swagger.parser.version>2.0.18</swagger.parser.version>
     <swagger.codegen.version>2.4.19</swagger.codegen.version>
     <faker.version>1.0.2</faker.version>
-    <mockito.version>3.9.0</mockito.version>
+    <mockito.version>5.3.1</mockito.version>
     <puppycrawl.version>8.40</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.6.0</maven.plugin.development.version>
@@ -164,13 +171,6 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
         <version>${spring.cloud.dependency.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot.dependency.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
