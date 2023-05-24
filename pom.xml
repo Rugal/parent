@@ -143,7 +143,7 @@
     <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <release.plugin.version>2.5.3</release.plugin.version>
-    <checkstyle.plugin.version>3.2.2</checkstyle.plugin.version>
+    <checkstyle.plugin.version>3.3.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
     <spotbugs.plugin.version>4.7.3.4</spotbugs.plugin.version>
     <pmd.plugin.version>3.21.0</pmd.plugin.version>
@@ -493,7 +493,7 @@
             <configLocation>configuration/checkstyle/checkstyle.xml</configLocation>
             <suppressionsLocation>configuration/checkstyle/suppression.xml</suppressionsLocation>
             <excludes>${checkstyle.exclusion}</excludes>
-            <encoding>${project.build.sourceEncoding}</encoding>
+            <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
             <consoleOutput>true</consoleOutput>
             <failsOnError>true</failsOnError>
             <failOnViolation>true</failOnViolation>
