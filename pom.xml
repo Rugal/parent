@@ -119,7 +119,7 @@
     <graphql-kickstart.version>12.0.0</graphql-kickstart.version>
     <playground.version>11.1.0</playground.version>
     <dagger.version>2.41</dagger.version>
-    <guava.version>30.1.1-jre</guava.version>
+    <guava.version>32.0.0-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
     <jsonwebtoken.version>0.11.2</jsonwebtoken.version>
     <vladmihalcea.version>2.10.1</vladmihalcea.version>
