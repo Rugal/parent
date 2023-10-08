@@ -96,7 +96,7 @@
     <!--
         dependency version
     -->
-    <servlet.version>4.0.1</servlet.version>
+    <servlet.version>6.0.0</servlet.version>
     <lombok.version>1.18.30</lombok.version>
     <spring.cloud.dependency.version>2022.0.2</spring.cloud.dependency.version>
     <spring.data.dependency.version>2023.0.0</spring.data.dependency.version>
@@ -186,8 +186,8 @@
           servlet
       -->
       <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
         <version>${servlet.version}</version>
         <scope>provided</scope>
       </dependency>
