@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.4</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.16.1-SNAPSHOT</version>
+  <version>1.17.0-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
@@ -51,6 +51,9 @@
     -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
+    <!-- kotlin -->
+    <kotlin.version>1.9.0</kotlin.version>
+    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <!-- repository -->
     <sonatype.snapshot>https://oss.sonatype.org/content/repositories/snapshots</sonatype.snapshot>
     <sonatype.staging>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatype.staging>
@@ -130,6 +133,12 @@
     <azure-messaging-eventhubs.version>5.1.1</azure-messaging-eventhubs.version>
     <azure-core.version>1.5.1</azure-core.version>
     <azure-identity.version>1.0.7</azure-identity.version>
+    <!-- kotlin -->
+    <kotlin-logging.version>5.1.0</kotlin-logging.version>
+    <!-- jakarta -->
+    <jakarta.validation.version>3.0.2</jakarta.validation.version>
+    <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
+    <jakarta.annotation.version>2.1.1</jakarta.annotation.version>
     <!--
         plugin version
     -->
@@ -161,6 +170,9 @@
     <assembly.plugin.version>3.4.2</assembly.plugin.version>
     <!-- azure -->
     <azure-function.plugin.version>1.8.0</azure-function.plugin.version>
+    <!-- kotlin -->
+    <detekt.plugin.version>1.23.1</detekt.plugin.version>
+    <dokka.plugin.version>1.8.20</dokka.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -190,6 +202,33 @@
         <artifactId>jakarta.servlet-api</artifactId>
         <version>${servlet.version}</version>
         <scope>provided</scope>
+      </dependency>
+      <!-- kotlin -->
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.oshai</groupId>
+        <artifactId>kotlin-logging-jvm</artifactId>
+        <version>${kotlin-logging.version}</version>
+      </dependency>
+      <!-- jakarta adoption -->
+      <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>${jakarta.annotation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta.persistence.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta.validation.version}</version>
       </dependency>
       <!--
           codegen
@@ -484,6 +523,24 @@
             </execution>
           </executions>
         </plugin>
+        <!-- lint -->
+        <plugin>
+          <groupId>com.github.ozsie</groupId>
+          <artifactId>detekt-maven-plugin</artifactId>
+          <version>${detekt.plugin.version}</version>
+          <configuration>
+            <autoCorrect>true</autoCorrect>
+            <failBuildOnMaxIssuesReached>false</failBuildOnMaxIssuesReached>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <!-- checkstyle -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -715,7 +772,22 @@
         <!--
           compile
         -->
-        <!-- compiler -->
+        <!-- kotlin compiler -->
+        <plugin>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-maven-plugin</artifactId>
+          <version>${kotlin.version}</version>
+          <executions>
+            <execution>
+              <id>compile</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- java compiler -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -1043,6 +1115,20 @@
           <configuration>
           </configuration>
         </plugin>
+        <!-- documentation -->
+        <plugin>
+          <groupId>org.jetbrains.dokka</groupId>
+          <artifactId>dokka-maven-plugin</artifactId>
+          <version>${dokka.plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>pre-site</phase>
+              <goals>
+                <goal>dokka</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <!-- javadoc -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1057,6 +1143,9 @@
             </execution>
           </executions>
         </plugin>
+        <!--
+          site
+        -->
         <!-- release -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
