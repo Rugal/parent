@@ -45,7 +45,7 @@ for snapshot version, please add sonatype:
 
 name | default | note
 ---|---|---
-java.version | 11 | Java Development Kit version
+java.version | 17 | Java Development Kit version
 skip.surefire.tests | true | Skip unit test & coverage report
 skip.failsafe.tests | true | Skip integration test & coverage report
 branch.threshold | 0.9 | Minimum branch coverage threshold

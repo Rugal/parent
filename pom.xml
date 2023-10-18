@@ -120,6 +120,7 @@
     <testing-harness.version>3.3.0</testing-harness.version>
     <graphql-tool.version>12.0.2</graphql-tool.version>
     <graphql-kickstart.version>12.0.0</graphql-kickstart.version>
+    <spring-graphql.version>1.2.3</spring-graphql.version>
     <playground.version>11.1.0</playground.version>
     <dagger.version>2.41</dagger.version>
     <guava.version>30.1.1-jre</guava.version>
@@ -135,6 +136,7 @@
     <azure-identity.version>1.0.7</azure-identity.version>
     <!-- kotlin -->
     <kotlin-logging.version>5.1.0</kotlin-logging.version>
+    <springmockk.version>4.0.2</springmockk.version>
     <!-- jakarta -->
     <jakarta.validation.version>3.0.2</jakarta.validation.version>
     <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
@@ -305,6 +307,11 @@
       </dependency>
       <!-- spring boot integration -->
       <dependency>
+        <groupId>org.springframework.graphql</groupId>
+        <artifactId>spring-graphql</artifactId>
+        <version>${spring-graphql.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.graphql-java-kickstart</groupId>
         <artifactId>graphql-spring-boot-starter</artifactId>
         <version>${graphql-kickstart.version}</version>
@@ -360,6 +367,12 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.ninja-squad</groupId>
+        <artifactId>springmockk</artifactId>
+        <version>${springmockk.version}</version>
         <scope>test</scope>
       </dependency>
       <!--
