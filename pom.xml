@@ -136,7 +136,7 @@
     <azure-function.version>1.3.1</azure-function.version>
     <azure-messaging-eventhubs.version>5.1.1</azure-messaging-eventhubs.version>
     <azure-core.version>1.5.1</azure-core.version>
-    <azure-identity.version>1.0.7</azure-identity.version>
+    <azure-identity.version>1.12.2</azure-identity.version>
     <!-- kotlin -->
     <kotlin-logging.version>7.0.0</kotlin-logging.version>
     <springmockk.version>4.0.2</springmockk.version>
