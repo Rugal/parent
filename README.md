@@ -85,3 +85,5 @@ mvn nexus-staging:rc-close -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
 # once it's done, the staging repository will be closed
 mvn nexus-staging:release -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
 ```
+
+From 2024, [token](https://help.sonatype.com/en/user-tokens.html) is required for deployment.  
