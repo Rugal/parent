@@ -105,7 +105,7 @@
     <spring.data.dependency.version>2024.0.4</spring.data.dependency.version>
     <spring.boot.dependency.version>3.3.4</spring.boot.dependency.version>
     <mapstruct.version>1.6.2</mapstruct.version>
-    <swagger.version>1.6.2</swagger.version>
+    <swagger.version>2.2.11</swagger.version>
     <openapi.jackson.version>0.2.6</openapi.jackson.version>
     <springfox.version>3.0.0</springfox.version>
     <springdoc.version>1.8.0</springdoc.version>
@@ -164,7 +164,7 @@
     <pmd.plugin.version>3.22.0</pmd.plugin.version>
     <flyway.version>10.12.0</flyway.version>
     <buildplan.plugin.version>2.2.2</buildplan.plugin.version>
-    <openapi.plugin.version>7.7.0</openapi.plugin.version>
+    <openapi.plugin.version>7.8.0</openapi.plugin.version>
     <build.helper.plugin.version>3.4.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
