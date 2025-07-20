@@ -162,7 +162,7 @@
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
     <spotbugs.plugin.version>4.8.4.0</spotbugs.plugin.version>
     <pmd.plugin.version>3.22.0</pmd.plugin.version>
-    <flyway.version>10.12.0</flyway.version>
+    <flyway.version>11.10.3</flyway.version>
     <buildplan.plugin.version>2.2.2</buildplan.plugin.version>
     <openapi.plugin.version>7.8.0</openapi.plugin.version>
     <build.helper.plugin.version>3.4.0</build.helper.plugin.version>
