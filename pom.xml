@@ -100,7 +100,7 @@
         dependency version
     -->
     <servlet.version>6.1.0</servlet.version>
-    <lombok.version>1.18.38</lombok.version>
+    <lombok.version>1.18.40</lombok.version>
     <spring.cloud.dependency.version>2025.0.0</spring.cloud.dependency.version>
     <spring.data.dependency.version>2025.0.2</spring.data.dependency.version>
     <spring.boot.dependency.version>3.5.3</spring.boot.dependency.version>
