@@ -23,29 +23,25 @@ for snapshot version, please add sonatype:
 ```xml
 <repositories>
   <repository>
-    <id>ossrh</id>
-    <name>Sonatype snapshot repository</name>
-    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    <layout>default</layout>
+    <name>Central Portal Snapshots</name>
+    <id>central-portal-snapshots</id>
+    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     <releases>
       <enabled>false</enabled>
-      <updatePolicy>always</updatePolicy>
-      <checksumPolicy>warn</checksumPolicy>
     </releases>
     <snapshots>
       <enabled>true</enabled>
-      <updatePolicy>never</updatePolicy>
-      <checksumPolicy>fail</checksumPolicy>
     </snapshots>
   </repository>
 </repositories>
+
 ```
 
 ## Configurable Property
 
 name | default | note
----|---|---
-java.version | 17 | Java Development Kit version
+---|--|---
+java.version | 24 | Java Development Kit version
 skip.surefire.tests | true | Skip unit test & coverage report
 skip.failsafe.tests | true | Skip integration test & coverage report
 branch.threshold | 0.9 | Minimum branch coverage threshold
@@ -53,7 +49,7 @@ line.threshold | 0.9 | Minimum line coverage threshold
 jacoco.skip.coverage.check | true | Skip test coverage check, this will fail build if threshold not reached
 openapi.codegen.package.root | ${project.groupId}.${project.artifactId}.openapi |
 openapi.codegen.skipIfSpecIsUnchanged | true | Skip codegen if no change in `contract.yml`
-checkstyle.exclusion|target/**/*,**/dto/**/*, **/ExceptionController.java|
+checkstyle.exclusion| target/**/*,**/dto/**/*, **/ExceptionController.java |
 flyway.schema | test | the target database schema for flyway
 azure.function.name | ${project.artifactId} | name of function app in Azure
 azure.resourceGroup | eastus2-206136 | resource group name
@@ -62,28 +58,21 @@ azure.region | eastus2 | function app region
 azure.stagingDirectory | ${project.build.directory}/azure-functions/${azure.function.name} | staging directory
 azure.runtime.os | linux | operating system function app
 graphql.package.name | ${project.groupId}.${project.artifactId}.graphql | package for graphql codegen
-graphql.schema.path|src/main/resources/graphql|the schema file of graphql for codegen
+graphql.schema.path| src/main/resources/graphql |the schema file of graphql for codegen
 
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FRugal%2Fparent.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FRugal%2Fparent?ref=badge_large)  
+## License 
 
 # development instruction
 
 ## release command
 
 ```bash
-# prepare release version and next snapshot version
-# upload artifact to sonatype
-mvn -P sonatype release:prepare release:perform
-# list release candidates
-mvn nexus-staging:rc-list
-# use this command to close the release candidate
-# while closing, repository will impose many checks
-# only if you pass all the tests can you run into next phase
-mvn nexus-staging:rc-close -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
-# use this command to actually release the release candidate if you pass all the checks
-# once it's done, the staging repository will be closed
-mvn nexus-staging:release -DstagingRepositoryId=YOUR_STAGING_REPOSITORY_ID
+# automatically flip version
+m -Pcentral release:prepare release:clean
+# checkout latest formal version
+git checkout @~1
+# actual release
+m -Pcentral clean deploy
 ```
 
-From 2024, [token](https://help.sonatype.com/en/user-tokens.html) is required for deployment.  
+From 2025, [token](https://central.sonatype.com/usertoken) is required for deployment.  
