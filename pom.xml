@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.3</version>
+    <version>4.0.0</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>ga.rugal</groupId>
   <artifactId>parent</artifactId>
-  <version>1.19.3-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
@@ -52,7 +52,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>24</java.version>
     <!-- kotlin -->
-    <kotlin.version>2.2.0</kotlin.version>
+    <kotlin.version>2.2.21</kotlin.version>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <!-- repository - New Central Portal URLs -->
     <central.snapshot>https://central.sonatype.com/api/v1/publisher</central.snapshot>
@@ -100,84 +100,79 @@
     -->
     <servlet.version>6.1.0</servlet.version>
     <lombok.version>1.18.40</lombok.version>
-    <spring.cloud.dependency.version>2025.0.0</spring.cloud.dependency.version>
-    <spring.data.dependency.version>2025.0.2</spring.data.dependency.version>
-    <spring.boot.dependency.version>3.5.3</spring.boot.dependency.version>
+    <spring.cloud.dependency.version>2025.1.0</spring.cloud.dependency.version>
+    <spring.data.dependency.version>2025.1.0</spring.data.dependency.version>
+    <spring.boot.dependency.version>4.0.0</spring.boot.dependency.version>
     <mapstruct.version>1.6.3</mapstruct.version>
-    <swagger.version>2.2.11</swagger.version>
-    <openapi.jackson.version>0.2.6</openapi.jackson.version>
+    <swagger.version>2.2.41</swagger.version>
+    <openapi.jackson.version>0.2.8</openapi.jackson.version>
     <springfox.version>3.0.0</springfox.version>
     <springdoc.version>1.8.0</springdoc.version>
     <swagger.parser.version>2.1.22</swagger.parser.version>
-    <swagger.codegen.version>2.4.19</swagger.codegen.version>
+    <swagger.codegen.version>2.4.50</swagger.codegen.version>
     <faker.version>1.0.2</faker.version>
-    <mockito.version>5.13.0</mockito.version>
+    <mockito.version>5.20.0</mockito.version>
     <puppycrawl.version>8.40</puppycrawl.version>
     <javax.inject.version>1</javax.inject.version>
     <maven.plugin.development.version>3.8.1</maven.plugin.development.version>
-    <maven.plugin.plugin.version>3.7.0</maven.plugin.plugin.version>
+    <maven.plugin.plugin.version>3.15.2</maven.plugin.plugin.version>
     <testing-harness.version>3.3.0</testing-harness.version>
-    <graphql-tool.version>12.0.2</graphql-tool.version>
-    <graphql-kickstart.version>15.1.0</graphql-kickstart.version>
-    <spring-graphql.version>1.4.1</spring-graphql.version>
-    <playground.version>11.1.0</playground.version>
-    <dagger.version>2.41</dagger.version>
+    <graphql-tool.version>14.0.1</graphql-tool.version>
+    <spring-graphql.version>2.0.0</spring-graphql.version>
+    <dagger.version>2.57.2</dagger.version>
     <guava.version>32.0.0-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
-    <jsonwebtoken.version>0.12.6</jsonwebtoken.version>
+    <jsonwebtoken.version>0.13.0</jsonwebtoken.version>
     <vladmihalcea.version>2.10.1</vladmihalcea.version>
     <geolatte-geom.version>1.8.0</geolatte-geom.version>
-    <kotlinx-coroutines.version>1.8.0</kotlinx-coroutines.version>
-    <spotbugs.dependency.version>4.8.6</spotbugs.dependency.version>
-    <!-- azure -->
-    <azure-function.version>1.3.1</azure-function.version>
-    <azure-messaging-eventhubs.version>5.1.1</azure-messaging-eventhubs.version>
-    <azure-core.version>1.5.1</azure-core.version>
-    <azure-identity.version>1.12.2</azure-identity.version>
+    <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
+    <spotbugs.dependency.version>4.9.8</spotbugs.dependency.version>
     <!-- kotlin -->
-    <kotlin-logging.version>7.0.0</kotlin-logging.version>
+    <kotlin-logging.version>7.0.13</kotlin-logging.version>
     <springmockk.version>4.0.2</springmockk.version>
     <!-- jakarta -->
-    <jakarta.validation.version>3.0.2</jakarta.validation.version>
-    <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
-    <jakarta.annotation.version>2.1.1</jakarta.annotation.version>
+    <jakarta.validation.version>3.1.1</jakarta.validation.version>
+    <jakarta.persistence.version>3.2.0</jakarta.persistence.version>
+    <jakarta.annotation.version>3.0.0</jakarta.annotation.version>
     <!-- clojure -->
-    <clojure.version>1.12.0</clojure.version>
+    <clojure.version>1.12.3</clojure.version>
     <!--
         plugin version
     -->
-    <flatten.plugin.version>1.6.0</flatten.plugin.version>
-    <compiler.plugin.version>3.13.0</compiler.plugin.version>
-    <git.commit.id.plugin.version>4.0.4</git.commit.id.plugin.version>
-    <test.plugin.version>3.5.0</test.plugin.version>
-    <source.plugin.version>3.2.0</source.plugin.version>
-    <dependency.plugin.version>3.6.1</dependency.plugin.version>
-    <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
+    <flatten.plugin.version>1.7.3</flatten.plugin.version>
+    <compiler.plugin.version>3.14.1</compiler.plugin.version>
+    <git.commit.id.plugin.version>4.9.10</git.commit.id.plugin.version>
+    <test.plugin.version>3.5.4</test.plugin.version>
+    <source.plugin.version>3.3.1</source.plugin.version>
+    <jar.plugin.version>3.5.0</jar.plugin.version>
+    <javadoc.plugin.version>3.12.0</javadoc.plugin.version>
+    <dependency.plugin.version>3.9.0</dependency.plugin.version>
+    <jacoco.plugin.version>0.8.14</jacoco.plugin.version>
     <deploy.plugin.version>3.1.4</deploy.plugin.version>
     <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
-    <gpg.plugin.version>3.2.4</gpg.plugin.version>
-    <release.plugin.version>3.0.1</release.plugin.version>
-    <checkstyle.plugin.version>3.3.1</checkstyle.plugin.version>
+    <gpg.plugin.version>3.2.8</gpg.plugin.version>
+    <release.plugin.version>3.2.0</release.plugin.version>
+    <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
     <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
-    <spotbugs.plugin.version>4.8.4.0</spotbugs.plugin.version>
-    <pmd.plugin.version>3.22.0</pmd.plugin.version>
-    <flyway.version>11.10.3</flyway.version>
+    <spotbugs.plugin.version>4.9.8.2</spotbugs.plugin.version>
+    <pmd.plugin.version>3.28.0</pmd.plugin.version>
+    <flyway.version>11.18.0</flyway.version>
     <buildplan.plugin.version>2.2.2</buildplan.plugin.version>
-    <openapi.plugin.version>7.8.0</openapi.plugin.version>
+    <openapi.plugin.version>7.17.0</openapi.plugin.version>
     <build.helper.plugin.version>3.4.0</build.helper.plugin.version>
     <sisu.plugin.version>0.3.4</sisu.plugin.version>
     <commitlinter.plugin.version>1.5.0</commitlinter.plugin.version>
     <graphql-codegen.plugin.version>5.10.0</graphql-codegen.plugin.version>
     <docck.plugin.version>1.1</docck.plugin.version>
-    <jxr.plugin.version>3.1.1</jxr.plugin.version>
-    <site.plugin.version>3.10.0</site.plugin.version>
-    <project.info.plugin.version>3.2.1</project.info.plugin.version>
-    <assembly.plugin.version>3.4.2</assembly.plugin.version>
+    <jxr.plugin.version>3.6.0</jxr.plugin.version>
+    <site.plugin.version>3.21.0</site.plugin.version>
+    <project.info.plugin.version>3.9.0</project.info.plugin.version>
+    <assembly.plugin.version>3.7.1</assembly.plugin.version>
     <!-- azure -->
     <azure-function.plugin.version>1.8.0</azure-function.plugin.version>
     <!-- kotlin -->
-    <detekt.plugin.version>1.23.1</detekt.plugin.version>
-    <dokka.plugin.version>1.8.20</dokka.plugin.version>
+    <detekt.plugin.version>1.23.8</detekt.plugin.version>
+    <dokka.plugin.version>2.1.0</dokka.plugin.version>
     <!-- clojure -->
     <clojure.plugin.version>1.9.3</clojure.plugin.version>
     <central.publishing.plugin.version>0.9.0</central.publishing.plugin.version>
@@ -337,29 +332,7 @@
         <artifactId>spring-graphql</artifactId>
         <version>${spring-graphql.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.graphql-java-kickstart</groupId>
-        <artifactId>graphql-spring-boot-starter</artifactId>
-        <version>${graphql-kickstart.version}</version>
-      </dependency>
-      <!-- UI -->
-      <dependency>
-        <groupId>com.graphql-java-kickstart</groupId>
-        <artifactId>voyager-spring-boot-starter</artifactId>
-        <version>${playground.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.graphql-java-kickstart</groupId>
-        <artifactId>playground-spring-boot-starter</artifactId>
-        <version>${playground.version}</version>
-      </dependency>
       <!-- test -->
-      <dependency>
-        <groupId>com.graphql-java-kickstart</groupId>
-        <artifactId>graphql-spring-boot-starter-test</artifactId>
-        <version>${graphql-kickstart.version}</version>
-        <scope>test</scope>
-      </dependency>
       <dependency>
         <groupId>io.github.kobylynskyi</groupId>
         <artifactId>graphql-java-codegen</artifactId>
@@ -487,28 +460,6 @@
         <artifactId>jjwt-jackson</artifactId>
         <version>${jsonwebtoken.version}</version>
       </dependency>
-      <!-- azure -->
-      <dependency>
-        <groupId>com.microsoft.azure.functions</groupId>
-        <artifactId>azure-functions-java-library</artifactId>
-        <version>${azure-function.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-messaging-eventhubs</artifactId>
-        <version>${azure-messaging-eventhubs.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>${azure-core.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-identity</artifactId>
-        <version>${azure-identity.version}</version>
-      </dependency>
-
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -1207,44 +1158,6 @@
             </execution>
           </executions>
         </plugin>
-        <!-- Azure -->
-        <plugin>
-          <groupId>com.microsoft.azure</groupId>
-          <artifactId>azure-functions-maven-plugin</artifactId>
-          <version>${azure-function.plugin.version}</version>
-          <configuration>
-            <!-- function app name -->
-            <appName>${azure.function.name}</appName>
-            <!-- function app resource group -->
-            <resourceGroup>${azure.resourceGroup}</resourceGroup>
-            <!-- function app service plan name -->
-            <appServicePlanName>${azure.servicePlanName}</appServicePlanName>
-            <!-- function app region-->
-            <region>${azure.region}</region>
-            <runtime>
-              <!-- runtime os, could be windows, linux or docker-->
-              <os>${azure.runtime.os}</os>
-              <!-- for docker function, please set the following parameters -->
-              <!-- <image>[hub-user/]repo-name[:tag]</image> -->
-              <!-- <serverId></serverId> -->
-              <!-- <registryUrl></registryUrl>  -->
-            </runtime>
-            <appSettings>
-              <property>
-                <name>FUNCTIONS_EXTENSION_VERSION</name>
-                <value>~3</value>
-              </property>
-            </appSettings>
-          </configuration>
-          <executions>
-            <execution>
-              <id>package-functions</id>
-              <goals>
-                <goal>package</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
         <!-- source -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1263,7 +1176,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>${source.plugin.version}</version>
+          <version>${jar.plugin.version}</version>
           <executions>
             <execution>
               <id>default-jar</id>
@@ -1294,7 +1207,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${source.plugin.version}</version>
+          <version>${javadoc.plugin.version}</version>
           <executions>
             <execution>
               <id>attach-javadocs</id>
