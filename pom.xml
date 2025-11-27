@@ -54,10 +54,9 @@
     <!-- kotlin -->
     <kotlin.version>2.2.0</kotlin.version>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-    <!-- repository -->
-    <sonatype.snapshot>https://oss.sonatype.org/content/repositories/snapshots</sonatype.snapshot>
-    <sonatype.staging>https://oss.sonatype.org/service/local/staging/deploy/maven2/</sonatype.staging>
-    <sonatype.release>https://oss.sonatype.org/content/repositories/releases/</sonatype.release>
+    <!-- repository - New Central Portal URLs -->
+    <central.snapshot>https://central.sonatype.com/api/v1/publisher</central.snapshot>
+    <central.release>https://central.sonatype.com/api/v1/publisher</central.release>
     <!-- test toggle -->
     <skip.surefire.tests>true</skip.surefire.tests>
     <skip.failsafe.tests>true</skip.failsafe.tests>
@@ -181,6 +180,7 @@
     <dokka.plugin.version>1.8.20</dokka.plugin.version>
     <!-- clojure -->
     <clojure.plugin.version>1.9.3</clojure.plugin.version>
+    <central.publishing.plugin.version>0.9.0</central.publishing.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -1329,18 +1329,9 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>${deploy.plugin.version}</version>
         </plugin>
-        <!-- nexus -->
-        <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${nexus.staging.plugin.version}</version>
-          <extensions>true</extensions>
-          <configuration>
-            <serverId>ossrh</serverId>
-            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-          </configuration>
-        </plugin>
+        <!-- Central Portal Publishing - No longer need nexus-staging-maven-plugin -->
+        <!-- The new Central Portal uses direct deployment via maven-deploy-plugin -->
+        <!-- Artifacts are deployed as bundles and published through the Central Portal UI or API -->
         <!--
           others
         -->
@@ -1463,45 +1454,81 @@
   </build>
 
   <profiles>
-    <!--only activate for releasing to sonatype-->
+    <!--activate for releasing to Maven Central via Central Portal-->
     <profile>
-      <id>sonatype</id>
+      <id>central</id>
       <build>
         <plugins>
           <!-- gpg -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- source -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- javadoc -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- central publish -->
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>${central.publishing.plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>${sonatype.snapshot}</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>${sonatype.staging}</url>
-    </repository>
-  </distributionManagement>
-
   <repositories>
     <repository>
-      <id>ossrh</id>
-      <name>Sonatype snapshot repository</name>
-      <url>${sonatype.snapshot}</url>
+      <id>central</id>
+      <name>Maven Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
       <layout>default</layout>
       <releases>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
         <checksumPolicy>warn</checksumPolicy>
       </releases>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <updatePolicy>never</updatePolicy>
         <checksumPolicy>fail</checksumPolicy>
       </snapshots>
