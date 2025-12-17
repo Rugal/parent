@@ -332,7 +332,17 @@
         <artifactId>spring-graphql</artifactId>
         <version>${spring-graphql.version}</version>
       </dependency>
+      <dependency>
+        <groupId>spring-boot-flyway</groupId>
+        <artifactId>spring-boot-flyway</artifactId>
+        <version>${spring.boot.dependency.version}</version>
+      </dependency>
       <!-- test -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-flyway-test</artifactId>
+        <version>${spring.boot.dependency.version}</version>
+      </dependency>
       <dependency>
         <groupId>io.github.kobylynskyi</groupId>
         <artifactId>graphql-java-codegen</artifactId>
