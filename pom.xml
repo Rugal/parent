@@ -118,7 +118,7 @@
     <maven.plugin.plugin.version>3.15.2</maven.plugin.plugin.version>
     <testing-harness.version>3.3.0</testing-harness.version>
     <graphql-tool.version>14.0.1</graphql-tool.version>
-    <spring-graphql.version>2.0.0</spring-graphql.version>
+    <spring-graphql.version>2.0.4</spring-graphql.version>
     <dagger.version>2.57.2</dagger.version>
     <guava.version>32.0.0-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
