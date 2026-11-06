@@ -60,6 +60,10 @@
     <!-- test toggle -->
     <skip.surefire.tests>true</skip.surefire.tests>
     <skip.failsafe.tests>true</skip.failsafe.tests>
+
+    <treeReporter>org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter</treeReporter>
+    <plainReporter>org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoReporter</plainReporter>
+
     <!-- surefire -->
     <surefire.report.path>${project.build.directory}/surefire-reports</surefire.report.path>
     <surefire.agent.path>${surefire.report.path}/jacoco.exec</surefire.agent.path>
@@ -949,7 +953,7 @@
             <consoleOutputReporter>
               <disable>false</disable>
             </consoleOutputReporter>
-            <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter" />
+            <statelessTestsetInfoReporter implementation="${plainReporter}" />
           </configuration>
         </plugin>
         <!--
@@ -981,7 +985,7 @@
             <consoleOutputReporter>
               <disable>false</disable>
             </consoleOutputReporter>
-            <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter" />
+            <statelessTestsetInfoReporter implementation="${plainReporter}" />
           </configuration>
           <executions>
             <execution>
