@@ -52,7 +52,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>24</java.version>
     <!-- kotlin -->
-    <kotlin.version>2.2.21</kotlin.version>
+    <kotlin.version>2.3.0</kotlin.version>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <!-- repository - New Central Portal URLs -->
     <central.snapshot>https://central.sonatype.com/api/v1/publisher</central.snapshot>
