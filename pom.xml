@@ -124,7 +124,7 @@
     <graphql-tool.version>14.0.1</graphql-tool.version>
     <spring-graphql.version>2.0.0</spring-graphql.version>
     <dagger.version>2.57.2</dagger.version>
-    <guava.version>32.0.0-jre</guava.version>
+    <guava.version>33.7.1-jre</guava.version>
     <javax.validation.version>2.0.1.Final</javax.validation.version>
     <jsonwebtoken.version>0.13.0</jsonwebtoken.version>
     <vladmihalcea.version>2.10.1</vladmihalcea.version>
